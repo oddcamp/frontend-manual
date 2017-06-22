@@ -389,16 +389,16 @@ We recommend using either [stylelint](https://stylelint.io/) or [sass-lint](http
 ### Setup Checklist
 
 - [ ] Setup yarn's package.json
-- [ ] Add autoprefixer (https://github.com/postcss/autoprefixer)
-- [ ] Add .editorconfig (http://editorconfig.org/)
-- [ ] Add babeljs (https://babeljs.io/) if using ES2015
-- [ ] Add DOM-based routing (https://www.paulirish.com/2009/markup-based-unobtrusive-comprehensive-dom-ready-execution/) if setting up a static site
-- [ ] Add inline_svg gem (https://github.com/jamesmartin/inline_svg)
-- [ ] Add eslint-config-airbnb (https://www.npmjs.com/package/eslint-config-airbnb)
+- [ ] Add [autoprefixer](https://github.com/postcss/autoprefixer)
+- [ ] Add [.editorconfig](http://editorconfig.org/)
+- [ ] Add [babeljs](https://babeljs.io/) if using ES2015
+- [ ] Set up [DOM-based routing](https://www.paulirish.com/2009/markup-based-unobtrusive-comprehensive-dom-ready-execution/) if working on a static site
+- [ ] Add [inline_svg](https://github.com/jamesmartin/inline_svg) or [SVGInjector](https://github.com/iconic/SVGInjector)
 
 ### Pre-Shipping Checklist
 
 - [ ] Optimise all raster images
 - [ ] Test in all major browsers
+- [ ] Move design system outside main repo, if applicable
 
 **[🚡 back to top](#table-of-contents)**
