@@ -158,7 +158,7 @@ It's common for us to work on several different projects for the same client. Wh
 
 #### Suggestions
 
-* Always use spaces instead of tabs to indent CSS (make sure .editorconfig files are properly set up, and you can safely forget about it);
+* Always use spaces instead of tabs to indent CSS (make sure [.editorconfig](#add-editorconfig) is properly set up and you can safely forget about it);
 
 **[🚡 back to top](#table-of-contents)**
 
@@ -166,7 +166,7 @@ It's common for us to work on several different projects for the same client. Wh
 
 ### Style
 
-We use [Airbnb's JS style guide](https://github.com/airbnb/javascript) as reference for our Javascript needs.
+We use [Airbnb's JS style guide](https://github.com/airbnb/javascript) as reference.
 
 ### ES6
 
@@ -174,7 +174,7 @@ We use ES6 together with [Babel](https://babeljs.io/), to ensure the code is com
 
 ### jQuery
 
-While jQuery is a great library for querying and manipulating the DOM, it is sometimes easy to over-rely on it. It's ok to use it for larger projects, where a lot of jQuery's functionality is required, or when building quick prototypes, but we should refrain from using it whenever it's clear that ES6 would allow us to build the exact same functionality with very little code. If you're really only using jQuery as a selector, consider using Sizzle (https://github.com/jquery/sizzle) instead.
+While jQuery is a great library for querying and manipulating the DOM, it is sometimes easy to over-rely on it. It's ok to use it for larger projects, where a lot of jQuery's functionality is required, or when building quick prototypes, but we should refrain from using it whenever it's clear that ES6 would allow us to build the exact same functionality with very little code. If you're really only using jQuery as a selector, consider using [Sizzle](https://github.com/jquery/sizzle) instead.
 
 Our suggestion is not to rely on jQuery for animations or transitions, if the same effects can be accomplished purely with CSS (using javascript for class toggling only).
 
