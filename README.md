@@ -1,0 +1,403 @@
+# Kollegorna's Front End Manual
+###### v0.2
+
+This document outlines the basic stuff for Front End development at Kollegorna. We should try to keep this as tiny as possible and include the absolutely most important stuff.
+
+These things are the default for all our projects unless anything else is specifically said. The entire Front End team should know these things. If you feel that you need some time of powering up your skills just holla at Per and you'll be given time.
+
+## Table of Contents
+
+- [Setup](#setup)
+  * [Add dependencies](#add-dependencies)
+  * [Add .editorconfig](#add-editorconfig)
+- [HTML](#html)
+  * [Semantics](#semantics)
+  * [Templating Languages](#templating-languages)
+  * [Resources](#resources)
+- [CSS](#css)
+  * [Preprocessor](#preprocessor)
+  * [Methodology](#methodology)
+  * [Mobile First](#mobile-first)
+  * [File Structure](#file-structure)
+  * [Design Systems](#design-systems)
+  * [Resources](#resources-1)
+- [JavaScript](#javascript)
+  * [Style](#style)
+  * [ES6](#es6)
+  * [jQuery](#jquery)
+  * [Routing](#routing)
+  * [Resources](#resources-2)
+- [Media](#media)
+  * [Image Types](#image-types)
+  * [Icons](#icons)
+  * [Screen Sizes & Pixel Density](#screen-sizes---pixel-density)
+  * [Optimisation](#optimisation)
+  * [Resources](#resources-3)
+- [Structured Data](#structured-data)
+  * [Resources](#resources-4)
+- [Libraries](#libraries)
+  * [Suggested Libraries](#suggested-libraries)
+  * [Resources](#resources-5)
+- [Accessibility](#accessibility)
+  * [WCAG 2.0 Level AA](#wcag-20-level-aa)
+  * [Resources](#resources-6)
+- [Performance](#performance)
+  * [Resources](#resources-7)
+- [Support and Compatibility](#support-and-compatibility)
+  * [Support Checklist](#support-checklist)
+  * [Resources](#resources-8)
+- [Tools](#tools-3)
+  * [Task Runners](#task-runners)
+  * [Dependency Managers](#dependency-managers)
+  * [Linters](#linters)
+- [Checklists](#checklists)
+  * [Setup Checklist](#setup-checklist)
+  * [Pre-Shipping Checklist](#pre-shipping-checklist)
+
+## Setup
+
+When starting a new project, make sure you do the following:
+
+### Add dependencies
+
+We expect certain dependencies to be bundled in by default with all of our projects. Below is a list of the libraries we currently recommend all projects include at setup. This list can be updated, so always refer back to it.
+
+#### Yarn
+
+* `yarn init`
+* `yarn add autoprefixer`
+
+If using ES6:
+
+* `yarn add babel-cli --dev`
+    * Add the following script to package.json: `"build": "babel app/assets/es -d app/assets/javascripts"` (tweak the paths as needed)
+
+#### Gemfile
+
+* `gem 'inline_svg'`
+* `gem 'webpacker'`
+
+Optional:
+
+* `gem 'guard-livereload', '~> 2.5', require: false`
+
+### Add .editorconfig
+
+All projects should have an [.editorconfig file](examples/.editorconfig) by default. If your editor doesn't have built-in editorconfig support, please [install the necessary plug-ins](http://editorconfig.org/#download).
+
+**[🚡 back to top](#table-of-contents)**
+
+## HTML
+
+### Semantics
+
+We should make an effort to produce valid semantic HTML, that takes advantage of the full potential of HTML5's tags to produce clean code, that is readable by humans and machines alike.
+
+### Templating Languages
+
+We use different templating engines, depending on the project's backend.
+
+* **ERB** for Rails/Middleman
+* **Twig** for Symfony
+* **Handlebars** for Ember
+* **JSX** for React
+
+### Resources
+
+#### Learn More
+
+* https://codepen.io/mi-lee/post/an-overview-of-html5-semantics
+
+**[🚡 back to top](#table-of-contents)**
+
+## CSS
+
+### Preprocessor
+
+We use SASS as the standard for all of our styling needs.
+
+### Methodology
+
+We use [Airbnb's css style guide](https://github.com/airbnb/css) as the basis for our CSS methodology, with some minor exceptions and adaptions:
+
+#### Naming
+
+Our naming conventions follow BEM's methodology, with a couple of twists:
+
+* Classes shouldn't nest more than three levels deep:
+    * `.header__navigation .link` is good
+    * `.header__navigation__links .link` is ok
+    * `.header__navigation__links__link` should be avoided
+
+* We should try to follow the “widget wrapper” pattern, whereas widgets are unique and follow the BEM naming conventions, while subclasses are global and follow simple semantic conventions:
+    * `.header .header__navigation .link`
+    * `.block .block__links .link`
+
+* We prefer the use of underscores and dashes over Airbnb's suggested camelCase approach;
+
+### Mobile First
+
+Regardless of how pages have been designed, they should ideally be coded according to a mobile-first methodology. This means all default styles should be targeted at the mobile version, and overrides progressively introduced for larger screens, through the use of media queries. Using mobile-specific breakpoints is ok when trying to override default values specifically and uniquely for mobile.
+
+### File Structure
+
+Different projects may require different file structuring, but in general it's a good idea to split styles into several files and, for larger projects, organise them into folders. Please use your best judgement here, and choose the structure that you believe is most beneficial for the project. If your css files are getting too long, it's probably a good sign that you need to re-evaluate how files are structured.
+
+### Design Systems
+
+It's common for us to work on several different projects for the same client. When this happens, we've found it useful to develop a collection of global, reusable styles — which we call a Design System. When declared as a dependency on a project, a design system gives us a nice collection of sensible defaults we can use to get started faster. Should the need arise, it also lets us update one default style across all projects related to a specific client. If you believe a design system would be beneficial in the long run, there is [a boilerplate with some sensible defaults in place](https://github.com/kollegorna/design-system-boilerplate). The repo includes instructions on how to set it up, as well as recommendations on how to seamlessly include it in your project without disrupting your workflow.
+
+### Resources
+
+#### Learn More
+
+* https://github.com/airbnb/css#oocss-and-bem
+* http://getbem.com/introduction/
+* http://www.intelligiblebabble.com/a-pattern-for-writing-css-to-scale
+
+#### Suggestions
+
+* Always use spaces instead of tabs to indent CSS (make sure .editorconfig files are properly set up, and you can safely forget about it);
+
+**[🚡 back to top](#table-of-contents)**
+
+## JavaScript
+
+### Style
+
+We use [Airbnb's JS style guide](https://github.com/airbnb/javascript) as reference for our Javascript needs.
+
+### ES6
+
+We use ES6 together with [Babel](https://babeljs.io/), to ensure the code is compiled down into browser-compatible javascript.
+
+### jQuery
+
+While jQuery is a great library for querying and manipulating the DOM, it is sometimes easy to over-rely on it. It's ok to use it for larger projects, where a lot of jQuery's functionality is required, or when building quick prototypes, but we should refrain from using it whenever it's clear that ES6 would allow us to build the exact same functionality with very little code. If you're really only using jQuery as a selector, consider using Sizzle (https://github.com/jquery/sizzle) instead.
+
+Our suggestion is not to rely on jQuery for animations or transitions, if the same effects can be accomplished purely with CSS (using javascript for class toggling only).
+
+### Routing
+
+On simple static sites, we encourage the use of [DOM routing](https://www.paulirish.com/2009/markup-based-unobtrusive-comprehensive-dom-ready-execution/), in order to keep the code scoped, cleaner and more readable.
+
+### Resources
+
+#### Learn More
+
+* https://es6.io/
+
+**[🚡 back to top](#table-of-contents)**
+
+## Media
+
+### Image Types
+
+#### Vector
+
+Unless there is a very strong reason not to, we always use SVGs for non-raster images. For easier customisation, SVGs should always be inline. Because images may need to be updated, we should refrain from pasting the SVG code directly on the page and use a library to handle the embedding for us. You can use any libraries you want, but we suggest these two:
+
+* Ruby: [inline_svg](https://github.com/jamesmartin/inline_svg)
+* JavaScript: [SVGInjector](https://github.com/iconic/SVGInjector)
+
+#### Raster
+
+For raster images, we should use JPG when the image's contents are mostly photographic in nature (i.e. where colour clustering is unlikely to be noticeable) and PNG when the image is mostly geometric, has large homogeneous swaths of colour or when transparency is required.
+
+### Icons
+
+If we're using an existing icon library available as an icon font, we should use that and make any necessary adjustments (e.g. add missing icons or tweak existing ones). If we're using custom icons, or icons from various different sources (e.g. The Noun Project), we should use SVGs. Using raster file types, such as PNGs, for icons is strongly discouraged.
+
+### Screen Sizes & Pixel Density
+
+We use Lazysizes to serve images for different screen sizes and pixel densities: https://github.com/aFarkas/lazysizes
+
+### Optimisation
+
+Images should always be optimised before the site goes live. This should be done in a non-destructive manner (i.e. you should make sure the original, non-compressed images are still easily available somewhere). For JPGs, most software has decent compression algorithms. For PNGs, you'll find a list of useful optimisation resources below.
+
+### Resources
+
+#### Tools
+
+* http://nukesaq88.github.io/Pngyu/
+* https://imageoptim.com (https://imageoptim.com/)
+* https://tinypng.com/ (for both PNG and JPG)
+
+**[🚡 back to top](#table-of-contents)**
+
+## Structured Data
+
+Use of JSON-LD and Schema.org (http://schema.org/) definitions to markup content is strongly encouraged whenever its benefits for the project are self-evident. You should use your best judgement in assessing whether or not the benefits justify the time invested in properly structuring data.
+
+### Resources
+
+#### Learn More
+
+* https://developers.google.com/search/docs/guides/intro-structured-data
+
+**[🚡 back to top](#table-of-contents)**
+
+## Libraries
+
+We have a liberal but cautious stance on libraries. We believe they can greatly increase the efficiency of our developers, but also make projects harder to maintain, so they should be used consciously. You're an expert and will have to make the best decision for each and every project.
+
+### Suggested Libraries
+
+This is a small list of libraries we have used and tested exhaustively, and encourage you to use:
+
+#### [Foundation for Sites](http://foundation.zurb.com/sites.html)
+
+Great framework for rapidly building prototypes and also well good enough to be used in production. Please bear in mind that just because we use Foundation, we don't have to opt for its components for everything in that project. If you think there is a better library for handling tabs for example then go ahead and use that. For most projects, we recommend you use SASS mixins instead of inline class names.
+
+### Resources
+
+#### Suggestions
+
+* When using libraries in production, try to only require/import the pieces you need — e.g. if you're using Foundation's grid, only add Foundation's core, its grid component and any dependencies it may have;
+* When adding a library as a dependency, you should specify a version, to prevent builds from breaking with future updates;
+
+**[🚡 back to top](#table-of-contents)**
+
+## Accessibility
+
+Building applications and websites that are usable for as many people (and bots) as possible is something that should be in our backbone. It's not some extra topping on the ice cream but rather something that should be considered during the entire process of a project.
+
+### WCAG 2.0 Level AA
+
+Code should be compliant with WCAG 2.0 Level AA. This is something that needs to be considered in the design process as well as one of the ingredients in the WCAG mix is color contrast.
+
+### Resources
+
+#### Learn More
+
+* http://webaim.org/intro/ (required reading)
+* http://webaim.org/standards/wcag/checklist
+* https://developer.mozilla.org/en-US/docs/Web/Accessibility
+* https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA
+* https://webbriktlinjer.se/r/1-utga-fran-wcag-2-0-niva-aa/ (Swedish)
+
+#### Docs & specs
+
+* http://checkers.eiii.eu/en/pagecheck2.0/
+* http://achecker.ca/checker/
+* http://cynthiasays.com/
+* http://www.tawdis.net/ingles.html?lang=en
+
+#### Tools
+
+* http://webaim.org/resources/contrastchecker/
+
+#### Suggestions
+
+* Whenever possible, choose frameworks and libraries that are accessible by default. Foundation for example has accessibility in its backbone (http://foundation.zurb.com/sites/docs/accessibility.html).
+* Make sure ARIA tags are used appropriately. Consider using JavaScript to add them (https://codepen.io/dencarlsson/pen/vmaqNQ).
+
+#### Good Examples
+
+* _[TODO]_
+
+**[🚡 back to top](#table-of-contents)**
+
+## Performance
+
+_[TODO]_
+
+### Resources
+
+#### Tools
+
+* https://developers.google.com/speed/pagespeed/
+* https://tools.pingdom.com (only on live sites since the last checked sites are displayed on the page… don't spill any secrets)
+
+**[🚡 back to top](#table-of-contents)**
+
+## Support and Compatibility
+
+While we are committed to ensuring the things we build can be used by as many users as possible, we also believe deep retroactive support hinders progress, so we try to make sure our work strikes the right balance of browser and device support.
+
+### Support Checklist
+
+For most projects, we should test exhaustively and make sure things work as expected in the following:
+
+#### Mobile Platforms
+*Latest versions of…*
+
+* iOS
+* Android
+
+#### Mobile browsers
+*Latest versions of…*
+
+* Mobile Safari
+* Chrome for Mobile
+
+#### Desktop Platforms
+* Windows
+* MacOS
+* Linux
+
+#### Desktop browsers
+*Two latest versions of…*
+
+* Chrome
+* Firefox
+* Safari
+
+*And it should also work in…*
+
+* Microsoft Edge
+* Internet Explorer 10 and up
+
+This doesn't mean that it has to look exactly the same across different browsers. But rather that the overall functionality should work and that the content should be accessible.
+
+### Resources
+
+#### Suggestions
+
+* When doing testing (and primarily design testing) we should do it both on retina and non retina screens. For example some fonts might have an excellent readability on smaller sizes on retina screens but are almost unreadable without retina.
+
+**[🚡 back to top](#table-of-contents)**
+
+## Tools
+
+### Task Runners
+
+We regularly use Gulp, but are open to trying other alternatives.
+
+### Dependency Managers
+
+We have historically used Bower for most of our frontend dependencies, but we're slowly retiring it. Whenever possible, Yarn should be used instead.
+
+On WordPress projects, we also use Composer.
+
+### Linters
+
+#### Javascript
+
+We recommend using [ES lint](http://eslint.org/) with [Airbnb's config](https://www.npmjs.com/package/eslint-config-airbnb).
+
+#### SASS/CSS
+
+We recommend using either [stylelint](https://stylelint.io/) or [sass-lint](https://github.com/sasstools/sass-lint).
+
+**[🚡 back to top](#table-of-contents)**
+
+## Checklists
+
+### Setup Checklist
+
+- [ ] Setup yarn's package.json
+- [ ] Add autoprefixer (https://github.com/postcss/autoprefixer)
+- [ ] Add .editorconfig (http://editorconfig.org/)
+- [ ] Add babeljs (https://babeljs.io/) if using ES2015
+- [ ] Add DOM-based routing (https://www.paulirish.com/2009/markup-based-unobtrusive-comprehensive-dom-ready-execution/) if setting up a static site
+- [ ] Add inline_svg gem (https://github.com/jamesmartin/inline_svg)
+- [ ] Add eslint-config-airbnb (https://www.npmjs.com/package/eslint-config-airbnb)
+
+### Pre-Shipping Checklist
+
+- [ ] Optimise all raster images
+- [ ] Test in all major browsers
+
+**[🚡 back to top](#table-of-contents)**
