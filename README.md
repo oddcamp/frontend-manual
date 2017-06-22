@@ -66,6 +66,7 @@ We expect certain dependencies to be bundled in by default with all of our proje
 
 * `yarn init`
 * `yarn add autoprefixer`
+* `yarn add normalize-scss`
 
 If using ES6:
 
@@ -118,7 +119,7 @@ We use SASS as the standard for all of our styling needs.
 
 ### Methodology
 
-We use [Airbnb's css style guide](https://github.com/airbnb/css) as the basis for our CSS methodology, with some minor exceptions and adaptions:
+We use [Airbnb's css style guide](https://github.com/airbnb/css) as the basis for our CSS methodology, with some minor exceptions and adaptations:
 
 #### Naming
 
