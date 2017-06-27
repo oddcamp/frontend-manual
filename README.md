@@ -42,7 +42,7 @@ These things are the default for all our projects unless anything else is specif
 - [Structured Data](#structured-data)
   * [Resources](#resources-5)
 - [Libraries](#libraries)
-  * [Suggested Libraries](#suggested-libraries) Sites](http://foundation.zurb.com/sites.html)](#-foundation-for-sites--http---foundationzurbcom-siteshtml-)
+  * [Suggested Libraries](#suggested-libraries)
   * [Resources](#resources-6)
 - [Accessibility](#accessibility)
   * [WCAG 2.0 Level AA](#wcag-20-level-aa)
