@@ -23,7 +23,7 @@ These things are the default for all our projects unless anything else is specif
 - [CSS](#css)
   * [Preprocessor](#preprocessor)
   * [Methodology](#methodology)
-  * [Mobile First](#mobile-first)
+  * [Responsive Breakpoints](#responsive-breakpoints)
   * [File Structure](#file-structure)
   * [Design Systems](#design-systems)
   * [Resources](#resources-2)
@@ -187,9 +187,23 @@ Our naming conventions follow BEM's methodology, with a couple of twists:
 
 **Usage of EMs/REMs for everything is recommended**. REMs should be the default, EMs should be used when we need local dependencies and PXs only for the rare cases when things aren't supposed to scale at all. EMs and REMs should be calculated through an helper, and never input manually (if you're setting up a design system, the boilerplate comes with a simple function called [ds-rem-calc](https://github.com/kollegorna/design-system-boilerplate/blob/master/scss/config/_type.scss#L58)).
 
-### Mobile First
+### Responsive Breakpoints
 
-Regardless of how pages have been designed, they should ideally be coded according to a mobile-first mindset. This means all default styles should be targeted at the mobile version, and overrides progressively introduced for larger screens, through the use of media queries. Using mobile-specific breakpoints is ok when trying to override default values specifically and uniquely for mobile.
+Regardless of how pages have been designed, breakpoints should be structured according to a mobile-first mindset. This means all default styles should be targeted at the mobile version, and overrides progressively introduced for larger screens, through the use of media queries. Using mobile-specific breakpoints is ok when trying to override default values specifically and uniquely for mobile.
+
+```css
+.element {
+  // Default styles
+
+  @include media(tablet) {
+    // Tablet overrides
+  }
+
+  @include media(desktop) {
+    // Desktop overrides
+  }
+}
+```
 
 ### File Structure
 
