@@ -121,7 +121,7 @@ As soon as the design work has been approved and it's moving to code, you should
 * https://www.invisionapp.com
 * https://rightfontapp.com
 
-Typeface Services
+#### Typeface Services
 
 * https://typekit.com/
 * https://www.typography.com/cloud/welcome
@@ -256,7 +256,7 @@ Whenever you want your SVG's paths' colours to be customisable through CSS, this
 
 When using this approach, SVG code can go inside one or several .svg files wrapped in a `<symbol>` tag:
 
-```html
+```svg
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
   <symbol id="menu" viewBox="0 0 40 40">
