@@ -34,9 +34,9 @@ These things are the default for all our projects unless anything else is specif
   * [Routing](#routing)
   * [Resources](#resources-3)
 - [Media](#media)
-  * [Vector Image (SVG)](#vector-image--svg-)
+  * [Vector Images (SVG)](#vector-images-svg)
   * [Icons](#icons)
-  * [Screen Sizes & Pixel Density](#screen-sizes---pixel-density)
+  * [Screen Sizes & Pixel Density](#screen-sizes--pixel-density)
   * [Optimisation](#optimisation)
   * [Resources](#resources-4)
 - [Structured Data](#structured-data)
@@ -242,7 +242,7 @@ On simple static sites, we encourage the use of [DOM routing](https://www.paulir
 
 ## Media
 
-### Vector Image (SVG)
+### Vector Images (SVG)
 
 We have a three-pronged approach at using vector images:
 
