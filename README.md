@@ -193,14 +193,14 @@ Regardless of how pages have been designed, breakpoints should be structured acc
 
 ```css
 .element {
-  // Default styles
+  /* Default styles */
 
   @include media(tablet) {
-    // Tablet overrides
+    /* Tablet overrides */
   }
 
   @include media(desktop) {
-    // Desktop overrides
+    /* Desktop overrides */
   }
 }
 ```
