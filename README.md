@@ -300,7 +300,7 @@ When going with this approach, we should refrain from pasting the SVG code direc
 
 Animating SVGs through CSS or SMIL should be approached with caution. Browser support for CSS Animations is buggy and not wide enough yet, and SMIL is not supported in IE/Edge and will soon be deprecated everywhere else. For the time being, we suggest you use JavaScript libraries such as [Snap.svg](http://snapsvg.io/) or [Velocity.js](http://velocityjs.org/).
 
-#### Raster
+### Raster
 
 For raster images, we should use JPGs when the image's contents are mostly photographic in nature (i.e. where colour clustering is unlikely to be noticeable) and PNG when the image is mostly geometric, has large homogeneous swaths of colour or when transparency is required.
 
