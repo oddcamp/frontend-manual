@@ -35,6 +35,7 @@ These things are the default for all our projects unless anything else is specif
   * [Resources](#resources-3)
 - [Media](#media)
   * [Vector Images (SVG)](#vector-images-svg)
+  * [Raster](#raster)
   * [Icons](#icons)
   * [Screen Sizes & Pixel Density](#screen-sizes--pixel-density)
   * [Optimisation](#optimisation)
