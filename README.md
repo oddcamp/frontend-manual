@@ -1,52 +1,58 @@
 # Kollegorna's Front End Manual
 ###### v0.2
 
-This document outlines the basic stuff for Front End development at Kollegorna. We should try to keep this as tiny as possible and include the absolutely most important stuff.
+This document outlines the basic stuff for Front End development at Kollegorna. We should try to keep this as tiny as possible and include only the most important stuff.
 
-These things are the default for all our projects unless anything else is specifically said. The entire Front End team should know these things. If you feel that you need some time of powering up your skills just holla at Per and you'll be given time.
+These things are the default for all our projects unless anything else is specifically said. The entire Front End team should know these things. If you feel that you need some time of powering up your skills just holla at Per and you'll get it.
 
 ## Table of Contents
 
 - [Setup](#setup)
   * [Add dependencies](#add-dependencies)
   * [Add .editorconfig](#add-editorconfig)
+- [Design](#design)
+  * [Software](#software)
+  * [Typefaces](#typefaces)
+  * [Presentation and Mock-ups](#presentation-and-mock-ups)
+  * [Design Files](#design-files)
+  * [Resources](#resources)
 - [HTML](#html)
   * [Semantics](#semantics)
   * [Templating Languages](#templating-languages)
-  * [Resources](#resources)
+  * [Resources](#resources-1)
 - [CSS](#css)
   * [Preprocessor](#preprocessor)
   * [Methodology](#methodology)
   * [Mobile First](#mobile-first)
   * [File Structure](#file-structure)
   * [Design Systems](#design-systems)
-  * [Resources](#resources-1)
+  * [Resources](#resources-2)
 - [JavaScript](#javascript)
   * [Style](#style)
   * [ES6](#es6)
   * [jQuery](#jquery)
   * [Routing](#routing)
-  * [Resources](#resources-2)
+  * [Resources](#resources-3)
 - [Media](#media)
-  * [Image Types](#image-types)
+  * [Vector Image (SVG)](#vector-image--svg-)
   * [Icons](#icons)
   * [Screen Sizes & Pixel Density](#screen-sizes---pixel-density)
   * [Optimisation](#optimisation)
-  * [Resources](#resources-3)
-- [Structured Data](#structured-data)
   * [Resources](#resources-4)
-- [Libraries](#libraries)
-  * [Suggested Libraries](#suggested-libraries)
+- [Structured Data](#structured-data)
   * [Resources](#resources-5)
+- [Libraries](#libraries)
+  * [Suggested Libraries](#suggested-libraries) Sites](http://foundation.zurb.com/sites.html)](#-foundation-for-sites--http---foundationzurbcom-siteshtml-)
+  * [Resources](#resources-6)
 - [Accessibility](#accessibility)
   * [WCAG 2.0 Level AA](#wcag-20-level-aa)
-  * [Resources](#resources-6)
-- [Performance](#performance)
   * [Resources](#resources-7)
+- [Performance](#performance)
+  * [Resources](#resources-8)
 - [Support and Compatibility](#support-and-compatibility)
   * [Support Checklist](#support-checklist)
-  * [Resources](#resources-8)
-- [Tools](#tools-3)
+  * [Resources](#resources-9)
+- [Tools](#tools-4)
   * [Task Runners](#task-runners)
   * [Dependency Managers](#dependency-managers)
   * [Linters](#linters)
@@ -60,7 +66,7 @@ When starting a new project, make sure you do the following:
 
 ### Add dependencies
 
-We expect certain dependencies to be bundled in by default with all of our projects. Below is a list of the libraries we currently recommend all projects include at setup. This list can be updated, so always refer back to it.
+We expect certain dependencies to be bundled in by default with all of our projects. Below is a list of the libraries we recommend all projects include at setup. This list can be updated, so always refer back to it.
 
 #### Yarn
 
@@ -85,6 +91,46 @@ Optional:
 ### Add .editorconfig
 
 All projects should have an [.editorconfig file](examples/.editorconfig) by default. If your editor doesn't have built-in editorconfig support, please [install the necessary plug-ins](http://editorconfig.org/#download).
+
+**[🚡 back to top](#table-of-contents)**
+
+## Design
+
+We think adopting a few common sense practices during the early design stages can help prevent friction later on, when we get to code. So we suggest everyone follows a few simple procedures, to ensure the transition from design to code is as seamless and natural as possible.
+
+### Software
+
+You're free to use whatever software you want (including none at all) to design, but please be mindful of the impact your choices will have on the rest of the team. We try to use Sketch as much as possible for UI design, and it should be your preferred tool, as it's accessible to most of the team. Other software (e.g. Adobe CC, Affinity Designer, Principle) can still be used for other tasks, such as illustration, photo manipulation, motion graphics or print, but please make sure choosing it won't block someone else in the team from picking up where you left off.
+
+### Typefaces
+
+Choice of typefaces should be tailored for the project's needs. If doing work primarily for the Web, the typefaces should be optimised and license-able for Web use. We have accounts at several subscription services, so we recommend you browse and consider those first when choosing typefaces for a project. You'll find a list of these services, along with other relevant links, below.
+
+### Presentation and Mock-ups
+
+You're free to use whatever tools you prefer to present proposals and/or mock-ups to clients, but we recommend using InVision for prototyping UI work. It's a robust service, has an almost seamless integration with Sketch and has proved to be client-friendly. For other types of work, we're partial to using short and to-the-point PDF presentations.
+
+### Design Files
+
+As soon as the design work has been approved and it's moving to code, you should upload all of the original design files plus any necessary assets (e.g. fonts, icons, original images, etc) to Google Drive, under the client's folder (go to Drive > Clients and check for a folder with the client's name, or create one in case it doesn't exist). **This is required procedure, even for projects you're the only one working on**. Whenever there have been major updates to any of the design files or assets, you should re-upload them (Drive takes care of file history and versioning).
+
+### Resources
+
+#### Tools
+
+* https://www.invisionapp.com
+* https://rightfontapp.com
+
+Typeface Services
+
+* https://typekit.com/
+* https://www.typography.com/cloud/welcome
+* https://www.myfonts.com/info/mls
+* https://fontstand.com
+
+#### Suggestions
+
+* Whenever possible, try to anticipate your colleagues' involvement in the project beforehand, and plan your software use accordingly.
 
 **[🚡 back to top](#table-of-contents)**
 
@@ -115,7 +161,7 @@ We use different templating engines, depending on the project's backend.
 
 ### Preprocessor
 
-We use SASS as the standard for all of our styling needs.
+We use SASS as the standard for our styling needs.
 
 ### Methodology
 
@@ -130,19 +176,23 @@ Our naming conventions follow BEM's methodology, with a couple of twists:
     * `.header__navigation__links .link` is ok
     * `.header__navigation__links__link` should be avoided
 
-* We should try to follow the “widget wrapper” pattern, whereas widgets are unique and follow the BEM naming conventions, while subclasses are global and follow simple semantic conventions:
+* We should try to follow the “widget wrapper” pattern. Widgets are unique and follow the BEM naming conventions, while subclasses are global and follow simple semantic conventions:
     * `.header .header__navigation .link`
     * `.block .block__links .link`
 
 * We prefer the use of underscores and dashes over Airbnb's suggested camelCase approach;
 
+#### Units
+
+**Usage of EMs/REMs for everything is recommended**. REMs should be the default, EMs should be used when we need local dependencies and PXs only for the rare cases when things aren't supposed to scale at all. EMs and REMs should be calculated through an helper, and never input manually (if you're setting up a design system, the boilerplate comes with a simple function called [ds-rem-calc](https://github.com/kollegorna/design-system-boilerplate/blob/master/scss/config/_type.scss#L58)).
+
 ### Mobile First
 
-Regardless of how pages have been designed, they should ideally be coded according to a mobile-first methodology. This means all default styles should be targeted at the mobile version, and overrides progressively introduced for larger screens, through the use of media queries. Using mobile-specific breakpoints is ok when trying to override default values specifically and uniquely for mobile.
+Regardless of how pages have been designed, they should ideally be coded according to a mobile-first mindset. This means all default styles should be targeted at the mobile version, and overrides progressively introduced for larger screens, through the use of media queries. Using mobile-specific breakpoints is ok when trying to override default values specifically and uniquely for mobile.
 
 ### File Structure
 
-Different projects may require different file structuring, but in general it's a good idea to split styles into several files and, for larger projects, organise them into folders. Please use your best judgement here, and choose the structure that you believe is most beneficial for the project. If your css files are getting too long, it's probably a good sign that you need to re-evaluate how files are structured.
+Different projects may require different file structuring, but in general it's a good idea to split styles into several files and, for larger projects, organise them into folders. Please use your best judgement here, and choose the structure that you believe suites the project best. If your css files are getting too long, it's probably a good sign that you need to reconsider how files are structured.
 
 ### Design Systems
 
@@ -174,7 +224,7 @@ We use ES6 together with [Babel](https://babeljs.io/), to ensure the code is com
 
 ### jQuery
 
-While jQuery is a great library for querying and manipulating the DOM, it is sometimes easy to over-rely on it. It's ok to use it for larger projects, where a lot of jQuery's functionality is required, or when building quick prototypes, but we should refrain from using it whenever it's clear that ES6 would allow us to build the exact same functionality with very little code. If you're really only using jQuery as a selector, consider using [Sizzle](https://github.com/jquery/sizzle) instead.
+While jQuery is a great library for querying and manipulating the DOM, it is sometimes easy to over-rely on it. It's ok to use it for larger projects, where a lot of jQuery's functionality is required, or when building quick prototypes, but we should refrain from using it whenever it's clear that ES6 would allow us to build the exact same functionality with little code. If you're only using jQuery as a selector, consider using [Sizzle](https://github.com/jquery/sizzle) instead.
 
 Our suggestion is not to rely on jQuery for animations or transitions, if the same effects can be accomplished purely with CSS (using javascript for class toggling only).
 
@@ -192,18 +242,67 @@ On simple static sites, we encourage the use of [DOM routing](https://www.paulir
 
 ## Media
 
-### Image Types
+### Vector Image (SVG)
 
-#### Vector
+We have a three-pronged approach at using vector images:
 
-Unless there is a very strong reason not to, we always use SVGs for non-raster images. For easier customisation, SVGs should always be inline. Because images may need to be updated, we should refrain from pasting the SVG code directly on the page and use a library to handle the embedding for us. You can use any libraries you want, but we suggest these two:
+* **`<use>`** for customisable (UI-related, decorational) elements
+* **`<img>`** for static images (part of the content)
+* **inline** for special situations.
+
+#### `<use>`
+
+Whenever you want your SVG's paths' colours to be customisable through CSS, this is the way to go. The technique is mostly enough for embedding decorational UI graphics like icons. It's performant and accessible, but still gives us some room for customisation. Please keep in mind, however, that this only allows you to choose a fill colour for all paths in a given group (styling different paths with different colours, or setting fills and strokes, for example, won't work).
+
+When using this approach, SVG code can go inside one or several .svg files wrapped in a `<symbol>` tag:
+
+```
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+  <symbol id="menu" viewBox="0 0 40 40">
+    <title>menu</title>
+    <path d="M0 0v89.1l22.3-22.3 18.6 37.2h7.4s4..."/>
+  </symbol>
+
+  <symbol id="close" viewBox="0 0 40 40">
+    <!-- ... -->  
+  </symbol>
+
+  <!-- ... -->
+
+</svg>
+```
+
+You should then embed the graphics into HTML as follows:
+
+```
+<svg><use xlink:href="/icons.svg#menu"></use></svg>
+```
+
+Make sure your `<svg>` instances are accessible (https://css-tricks.com/accessible-svgs/#article-header-id-8): either tell the screen readers to ignore the element (`[aria-hidden=true]`) or add a title (`<title> or [aria-label=”...”]`).
+
+#### `<img>`
+
+When adding SVGs as static images (e.g. illustrations) which serves as a part of the content you can embed it directly with the `<img>` tag, as you would any other image. Remember to fill in the alt attribute for accessibility reasons.
+
+#### Inline
+
+Whenever complex styling is required, you can use inline SVGs. However, because this is less accessible and performant, it should not be used whenever any of the two solutions above are viable options.
+
+Make sure your `<svg>` instances are accessible (https://css-tricks.com/accessible-svgs/#article-header-id-8): either tell the screen readers to ignore the element (`[aria-hidden=true]`) or add a title (`<title> or [aria-label=”...”]`).
+
+When going with this approach, we should refrain from pasting the SVG code directly on the page and use a library to handle the embedding for us. You can use any libraries you want, but we suggest these two:
 
 * Ruby: [inline_svg](https://github.com/jamesmartin/inline_svg)
 * JavaScript: [SVGInjector](https://github.com/iconic/SVGInjector)
 
+#### Animations
+
+Animating SVGs through CSS or SMIL should be approached with caution. Browser support for CSS Animations is buggy and not wide enough yet, and SMIL is not supported in IE/Edge and will soon be deprecated everywhere else. For the time being, we suggest you use JavaScript libraries such as [Snap.svg](http://snapsvg.io/) or [Velocity.js](http://velocityjs.org/).
+
 #### Raster
 
-For raster images, we should use JPG when the image's contents are mostly photographic in nature (i.e. where colour clustering is unlikely to be noticeable) and PNG when the image is mostly geometric, has large homogeneous swaths of colour or when transparency is required.
+For raster images, we should use JPGs when the image's contents are mostly photographic in nature (i.e. where colour clustering is unlikely to be noticeable) and PNG when the image is mostly geometric, has large homogeneous swaths of colour or when transparency is required.
 
 ### Icons
 
@@ -224,6 +323,10 @@ Images should always be optimised before the site goes live. This should be done
 * http://nukesaq88.github.io/Pngyu/
 * https://imageoptim.com (https://imageoptim.com/)
 * https://tinypng.com/ (for both PNG and JPG)
+
+#### Tutorials
+
+* https://css-tricks.com/accessible-svgs
 
 **[🚡 back to top](#table-of-contents)**
 
