@@ -256,7 +256,7 @@ Whenever you want your SVG's paths' colours to be customisable through CSS, this
 
 When using this approach, SVG code can go inside one or several .svg files wrapped in a `<symbol>` tag:
 
-```
+```html
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
   <symbol id="menu" viewBox="0 0 40 40">
@@ -275,7 +275,7 @@ When using this approach, SVG code can go inside one or several .svg files wrapp
 
 You should then embed the graphics into HTML as follows:
 
-```
+```html
 <svg><use xlink:href="/icons.svg#menu"></use></svg>
 ```
 
