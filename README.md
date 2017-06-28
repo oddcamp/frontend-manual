@@ -1,5 +1,5 @@
 # Kollegorna's Front End Manual
-###### v0.3
+###### v0.4
 
 This document outlines the basic stuff for Front End development at Kollegorna. We should try to keep this as tiny as possible and include only the most important stuff.
 
@@ -34,10 +34,10 @@ These things are the default for all our projects unless anything else is specif
   * [Routing](#routing)
   * [Resources](#resources-3)
 - [Media](#media)
-  * [Vector Images (SVG)](#vector-images-svg)
+  * [Vector Images (SVG)](#vector-images--svg-)
   * [Raster](#raster)
   * [Icons](#icons)
-  * [Screen Sizes & Pixel Density](#screen-sizes--pixel-density)
+  * [Screen Sizes and Pixel Density](#screen-sizes-and-pixel-density)
   * [Optimisation](#optimisation)
   * [Resources](#resources-4)
 - [Structured Data](#structured-data)
@@ -50,6 +50,7 @@ These things are the default for all our projects unless anything else is specif
   * [Best Practices](#best-practices)
   * [Resources](#resources-7)
 - [Performance](#performance)
+  * [Best Practices](#best-practices-1)
   * [Resources](#resources-8)
 - [Support and Compatibility](#support-and-compatibility)
   * [Support Checklist](#support-checklist)
@@ -324,7 +325,7 @@ For raster images, we should use JPGs when the image's contents are mostly photo
 
 If we're using an existing icon library available as an icon font, we should use that and make any necessary adjustments (e.g. add missing icons or tweak existing ones). If we're using custom icons, or icons from various different sources (e.g. The Noun Project), we should use SVGs. Using raster file types, such as PNGs, for icons is strongly discouraged.
 
-### Screen Sizes & Pixel Density
+### Screen Sizes and Pixel Density
 
 We use Lazysizes to serve images for different screen sizes and pixel densities: https://github.com/aFarkas/lazysizes
 
@@ -440,7 +441,9 @@ $('.btn').on('click', ...
 
 ## Performance
 
-### Embedding external resources
+### Best Practices
+
+#### Embedding external resources
 
 We should avoid placing external resource embed codes in <head> that work in a synchronous manner and therefore blocks rendering of the page. The more such an occasions, the later users start seeing the page. Asynchronous CSS is encouraged, but due to its complex nature it is okay to have a (single preferably) synchronous CSS file reference. JavaScript embeds should be placed right before </body> tag preferably with [`defer` or `async`](http://www.growingwiththeweb.com/2014/02/async-vs-defer-attributes.html) attributes inserted along.
 
@@ -457,7 +460,7 @@ We should avoid placing external resource embed codes in <head> that work in a s
 </html>
 ```
 
-### Inlining JavaScript
+#### Inlining JavaScript
 
 In cases (e.g. Modernizr) when there's a need to run some JavaScript code in `<head></head>` we should keep it as short as possible and inline it by making sure it's minified in the production.
 
@@ -484,11 +487,11 @@ Even though ideally all the JavaScript code should be placed in external files, 
 
 Avoid inlining JavaScript everywhere else.
 
-### Inlining JavaScript
+#### Inlining CSS
 
 CSS should only be inlined in `<head></head>`.
 
-### Performant jQuery code
+#### Performant jQuery code
 
 jQuery selectors are expensive therefore we should cache jQuery selectors into variables.
 
@@ -521,9 +524,7 @@ $('.items', function() {
 
 Also be sure to check [jQuery code recommendations](https://learn.jquery.com/performance/).
 
-### Performant CSS code
-
-#### Selector Size
+#### Performant CSS code
 
 Avoid selectors with more than three levels:
 
