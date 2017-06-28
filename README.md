@@ -1,5 +1,5 @@
 # Kollegorna's Front End Manual
-###### v0.2
+###### v0.3
 
 This document outlines the basic stuff for Front End development at Kollegorna. We should try to keep this as tiny as possible and include only the most important stuff.
 
@@ -47,6 +47,7 @@ These things are the default for all our projects unless anything else is specif
   * [Resources](#resources-6)
 - [Accessibility](#accessibility)
   * [WCAG 2.0 Level AA](#wcag-20-level-aa)
+  * [Best Practices](#best-practices)
   * [Resources](#resources-7)
 - [Performance](#performance)
   * [Resources](#resources-8)
@@ -173,9 +174,9 @@ We use [Airbnb's css style guide](https://github.com/airbnb/css) as the basis fo
 Our naming conventions follow BEM's methodology, with a couple of twists:
 
 * Classes shouldn't nest more than three levels deep:
-    * `.header__navigation .link` is good
-    * `.header__navigation__links .link` is ok
-    * `.header__navigation__links__link` should be avoided
+    * 👌 `.header__navigation .link` is good
+    * ✅ `.header__navigation__links .link` is ok
+    * ❌ `.header__navigation__links__link` should be avoided
 
 * We should try to follow the “widget wrapper” pattern. Widgets are unique and follow the BEM naming conventions, while subclasses are global and follow simple semantic conventions:
     * `.header .header__navigation .link`
@@ -263,7 +264,7 @@ We have a three-pronged approach at using vector images:
 
 * **`<use>`** for customisable (UI-related, decorational) elements
 * **`<img>`** for static images (part of the content)
-* **inline** for special situations.
+* **`<svg>`** (inline) for special situations.
 
 #### `<use>`
 
@@ -300,7 +301,7 @@ Make sure your `<svg>` instances are accessible (https://css-tricks.com/accessib
 
 When adding SVGs as static images (e.g. illustrations) which serves as a part of the content you can embed it directly with the `<img>` tag, as you would any other image. Remember to fill in the alt attribute for accessibility reasons.
 
-#### Inline
+#### `<svg>` (inline)
 
 Whenever complex styling is required, you can use inline SVGs. However, because this is less accessible and performant, it should not be used whenever any of the two solutions above are viable options.
 
@@ -386,11 +387,34 @@ Building applications and websites that are usable for as many people (and bots)
 
 Code should be compliant with WCAG 2.0 Level AA. This is something that needs to be considered in the design process as well as one of the ingredients in the WCAG mix is color contrast.
 
+### Best Practices
+
+#### Interactive Elements
+
+When working with elements users are supposed to click or tap on, use HTML tags meant for that purpose:
+
+```javascript
+$('.btn').on('click', ...
+```
+
+✅ DO:
+
+```html
+<button class="btn" type="button">Go baby!</button>
+```
+
+❌ DON'T:
+
+```html
+<div class="btn">Go baby!</div>
+```
+
 ### Resources
 
 #### Learn More
 
 * http://webaim.org/intro/ (required reading)
+* https://madebysidecar.com/journal/accessibility-basics-for-designers
 * http://webaim.org/standards/wcag/checklist
 * https://developer.mozilla.org/en-US/docs/Web/Accessibility
 * https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA
@@ -412,17 +436,106 @@ Code should be compliant with WCAG 2.0 Level AA. This is something that needs to
 * Whenever possible, choose frameworks and libraries that are accessible by default. Foundation for example has accessibility in its backbone (http://foundation.zurb.com/sites/docs/accessibility.html).
 * Make sure ARIA tags are used appropriately. Consider using JavaScript to add them (https://codepen.io/dencarlsson/pen/vmaqNQ).
 
-#### Good Examples
-
-* _[TODO]_
-
 **[🚡 back to top](#table-of-contents)**
 
 ## Performance
 
-_[TODO]_
+### Embedding external resources
+
+We should avoid placing external resource embed codes in <head> that work in a synchronous manner and therefore blocks rendering of the page. The more such an occasions, the later users start seeing the page. Asynchronous CSS is encouraged, but due to its complex nature it is okay to have a (single preferably) synchronous CSS file reference. JavaScript embeds should be placed right before </body> tag preferably with [`defer` or `async`](http://www.growingwiththeweb.com/2014/02/async-vs-defer-attributes.html) attributes inserted along.
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/main.css">
+  </head>
+  <body>
+    ...
+    <script src="/main.js" defer></script>
+  </body>
+</html>
+```
+
+### Inlining JavaScript
+
+In cases (e.g. Modernizr) when there's a need to run some JavaScript code in `<head></head>` we should keep it as short as possible and inline it by making sure it's minified in the production.
+
+```html
+<head>
+  ...
+  <script>
+    ;!function(e,t,n){function o(e,t)...
+  </script>
+</head>
+```
+
+Even though ideally all the JavaScript code should be placed in external files, it's sometimes okay to inline it at the end of the document, e.g.:
+
+```html
+    ...
+  <script src="/main.js" defer></script>
+  <script>
+    // inlined JS
+  </script>
+</body>
+</html>
+```
+
+Avoid inlining JavaScript everywhere else.
+
+### Inlining JavaScript
+
+CSS should only be inlined in `<head></head>`.
+
+### Performant jQuery code
+
+jQuery selectors are expensive therefore we should cache jQuery selectors into variables.
+
+✅ DO:
+
+```javascript
+//
+var $win = $(window);
+$win.on('scroll', ...
+$win.on('resize', ...
+
+$('.items', function() {
+  var $item = $(this);
+  $item.attr(...
+  $item.on(...
+});
+```
+
+❌ DON'T:
+
+```javascript
+$(window).on('scroll', ...
+$(window).on('resize', ...
+
+$('.items', function() {
+  $(this).attr(...
+  $(this).on(...
+});
+```
+
+Also be sure to check [jQuery code recommendations](https://learn.jquery.com/performance/).
+
+### Performant CSS code
+
+#### Selector Size
+
+Avoid selectors with more than three levels:
+
+* 👌 `.box` is great
+* ✅ `.box .author .name` is good
+* ❌ `.box .author .name .first` is bad
 
 ### Resources
+
+#### Learn more
+
+* https://learn.jquery.com/performance/
 
 #### Tools
 
