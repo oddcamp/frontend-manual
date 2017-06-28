@@ -209,7 +209,7 @@ Regardless of how pages have been designed, breakpoints should be structured acc
 
 ### File Structure
 
-Different projects may require different file structuring, but in general it's a good idea to split styles into several files and, for larger projects, organise them into folders. Please use your best judgement here, and choose the structure that you believe suites the project best. If your css files are getting too long, it's probably a good sign that you need to reconsider how files are structured.
+Different projects may require different file structuring, but in general it's a good idea to split styles into several files and, for larger projects, organise them into folders. Please use your best judgement here, and choose the structure that you believe suits the project best. If your css files are getting too long, it's probably a good sign that you need to reconsider how files are structured.
 
 ### Design Systems
 
