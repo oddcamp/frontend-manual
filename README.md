@@ -187,7 +187,7 @@ Our naming conventions follow BEM's methodology, with a couple of twists:
 
 #### Units
 
-**Usage of EMs/REMs for everything is recommended**. REMs should be the default, EMs should be used when we need local dependencies and PXs only for the rare cases when things aren't supposed to scale at all. EMs and REMs should be calculated through an helper, and never input manually (if you're setting up a design system, the boilerplate comes with a simple function called [ds-rem-calc](https://github.com/kollegorna/design-system-boilerplate/blob/master/scss/config/_type.scss#L58)).
+**Usage of EMs/REMs for everything is recommended**. REMs should be the default, EMs should be used when we need local dependencies and PXs only for the rare cases when things aren't supposed to scale at all. EMs and REMs should be calculated through an helper, and never input manually (if you're setting up a design system, the boilerplate comes with a simple functions called [ds-em](https://github.com/kollegorna/design-system-boilerplate/blob/master/scss/config/_type.scss#L55) and [ds-rem](https://github.com/kollegorna/design-system-boilerplate/blob/master/scss/config/_type.scss#L59)).
 
 ### Responsive Breakpoints
 
