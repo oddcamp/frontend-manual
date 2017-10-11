@@ -297,7 +297,7 @@ Make sure your `<svg>` instances are accessible (https://css-tricks.com/accessib
 
 #### `<img>`
 
-When adding SVGs as static images (e.g. illustrations) which serves as a part of the content you can embed it directly with the `<img>` tag, as you would any other image. Remember to fill in the alt attribute for accessibility reasons.
+When adding SVGs as static images (e.g. illustrations) as part of the content you can embed them directly with the `<img>` tag, as you would any other image. Remember to fill in the `alt` attribute for accessibility reasons.
 
 #### `<svg>` (inline)
 
@@ -316,11 +316,11 @@ Animating SVGs through CSS or SMIL should be approached with caution. Browser su
 
 ### Raster
 
-For raster images, we should use JPGs when the image's contents are mostly photographic in nature (i.e. where colour clustering is unlikely to be noticeable) and PNG when the image is mostly geometric, has large homogeneous swaths of colour or when transparency is required.
+For raster images, we should use JPGs when the image's contents are mostly photographic in nature (i.e. where colour clustering is unlikely to be noticeable) and PNGs when the image is mostly geometric, has large homogeneous swaths of colour or when transparency is required.
 
 ### Icons
 
-If we're using an existing icon library available as an icon font, we should use that and make any necessary adjustments (e.g. add missing icons or tweak existing ones). If we're using custom icons, or icons from various different sources (e.g. The Noun Project), we should use SVGs. Using raster file types, such as PNGs, for icons is strongly discouraged.
+If we're using an existing icon library available as an icon font, we should use that and make any necessary adjustments (e.g. add missing icons or tweak existing ones). If we're using custom icons, or icons from various different sources (e.g. The Noun Project), we should use SVGs. Using raster file types (such as PNGs) for icons is strongly discouraged.
 
 ### Screen Sizes and Pixel Density
 
@@ -366,7 +366,7 @@ This is a small list of libraries we have used and tested exhaustively, and enco
 
 #### [Foundation for Sites](http://foundation.zurb.com/sites.html)
 
-Great framework for rapidly building prototypes and also well good enough to be used in production. Please bear in mind that just because we use Foundation, we don't have to opt for its components for everything in that project. If you think there is a better library for handling tabs for example then go ahead and use that. For most projects, we recommend you use SASS mixins instead of inline class names.
+Great framework for rapidly building prototypes and good enough to be used in production. Please bear in mind that just because we use Foundation, we don't have to opt for its components for everything in that project. If you think there is a better library for handling tabs, for example, then go ahead and use that. For most projects, we recommend you use SASS mixins instead of inline class names.
 
 ### Resources
 
@@ -379,7 +379,7 @@ Great framework for rapidly building prototypes and also well good enough to be 
 
 ## Accessibility
 
-Building applications and websites that are usable for as many people (and bots) as possible is something that should be in our backbone. It's not some extra topping on the ice cream but rather something that should be considered during the entire process of a project.
+Building applications and websites that are usable for as many people (and bots) as possible is in our backbone. It's not some extra topping on the ice cream but rather something that should be considered during the entire process of a project.
 
 ### WCAG 2.0 Level AA
 
