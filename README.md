@@ -521,14 +521,6 @@ $('.items', function() {
 
 Also be sure to check [jQuery code recommendations](https://learn.jquery.com/performance/).
 
-#### Performant CSS code
-
-Avoid selectors with more than three levels:
-
-* 👌 `.box` is great
-* ✅ `.box .author .name` is good
-* ❌ `.box .author .name .first` is bad
-
 ### Resources
 
 #### Learn more
