@@ -74,22 +74,7 @@ We expect certain dependencies to be bundled in by default with all of our proje
 #### Yarn
 
 * `yarn init`
-* `yarn add autoprefixer`
 * `yarn add normalize-scss`
-
-If using ES6:
-
-* `yarn add babel-cli --dev`
-    * Add the following script to package.json: `"build": "babel app/assets/es -d app/assets/javascripts"` (tweak the paths as needed)
-
-#### Gemfile
-
-* `gem 'inline_svg'`
-* `gem 'webpacker'`
-
-Optional:
-
-* `gem 'guard-livereload', '~> 2.5', require: false`
 
 ### Add .editorconfig
 
@@ -174,14 +159,26 @@ We use [Airbnb's css style guide](https://github.com/airbnb/css) as the basis fo
 
 Our naming conventions follow BEM's methodology, with a couple of twists:
 
-* Classes shouldn't nest more than three levels deep:
-    * 👌 `.header__navigation .link` is good
-    * ✅ `.header__navigation__links .link` is ok
+* Nested single class names should start with a dash:
+    * 👌 `.header .-button` is good
+    * ❌ `.header .button` should be avoided
+
+* Classes shouldn't be chained above three levels:
+    * 👌 `.header__navigation .-link` is good
+    * ✅ `.header__navigation__links .-link` is ok
     * ❌ `.header__navigation__links__link` should be avoided
 
+* Classes shouldn't nest more than three levels deep:
+    * 👌 `.header .-button .-link` is good
+    * ❌ `.header .-button .-link .-title` should be avoided
+
 * We should try to follow the “widget wrapper” pattern. Widgets are unique and follow the BEM naming conventions, while subclasses are global and follow simple semantic conventions:
-    * `.header .header__navigation .link`
-    * `.block .block__links .link`
+    * `.header .header__navigation .-link`
+    * `.block .block__links .-link`
+
+* For performance reasons, we should try to nest classes as little as possible.
+    * 👌 `.block ul a` is good
+    * ❌ `.block ul li a` should be avoided
 
 * We prefer the use of underscores and dashes over Airbnb's suggested camelCase approach;
 
