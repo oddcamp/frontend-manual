@@ -610,11 +610,8 @@ We recommend using either [stylelint](https://stylelint.io/) or [sass-lint](http
 ### Setup Checklist
 
 - [ ] Setup yarn's package.json
-- [ ] Add [autoprefixer](https://github.com/postcss/autoprefixer)
 - [ ] Add [.editorconfig](http://editorconfig.org/)
-- [ ] Add [babeljs](https://babeljs.io/) if using ES2015
 - [ ] Set up [DOM-based routing](https://www.paulirish.com/2009/markup-based-unobtrusive-comprehensive-dom-ready-execution/) if working on a static site
-- [ ] Add [inline_svg](https://github.com/jamesmartin/inline_svg) or [SVGInjector](https://github.com/iconic/SVGInjector)
 
 ### Pre-Shipping Checklist
 
