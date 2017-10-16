@@ -368,6 +368,10 @@ This is a small list of libraries we have used and tested exhaustively, and enco
 
 Great framework for rapidly building prototypes and good enough to be used in production. Please bear in mind that just because we use Foundation, we don't have to opt for its components for everything in that project. If you think there is a better library for handling tabs, for example, then go ahead and use that. For most projects, we recommend you use SASS mixins instead of inline class names.
 
+#### [Micromodal.js](https://micromodal.now.sh/)
+
+Micromodal.js is a lightweight, configurable and a11y-enabled modal library written in pure JavaScript.
+
 ### Resources
 
 #### Suggestions
