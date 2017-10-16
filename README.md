@@ -59,9 +59,6 @@ These things are the default for all our projects unless anything else is specif
   * [Task Runners](#task-runners)
   * [Dependency Managers](#dependency-managers)
   * [Linters](#linters)
-- [Checklists](#checklists)
-  * [Setup Checklist](#setup-checklist)
-  * [Pre-Shipping Checklist](#pre-shipping-checklist)
 
 ## Setup
 
@@ -602,21 +599,5 @@ We recommend using [ES lint](http://eslint.org/) with [Airbnb's config](https://
 #### SASS/CSS
 
 We recommend using either [stylelint](https://stylelint.io/) or [sass-lint](https://github.com/sasstools/sass-lint).
-
-**[🚡 back to top](#table-of-contents)**
-
-## Checklists
-
-### Setup Checklist
-
-- [ ] Setup yarn's package.json
-- [ ] Add [.editorconfig](http://editorconfig.org/)
-- [ ] Set up [DOM-based routing](https://www.paulirish.com/2009/markup-based-unobtrusive-comprehensive-dom-ready-execution/) if working on a static site
-
-### Pre-Shipping Checklist
-
-- [ ] Optimise all raster images
-- [ ] Test in all major browsers
-- [ ] Move design system outside main repo, if applicable
 
 **[🚡 back to top](#table-of-contents)**
