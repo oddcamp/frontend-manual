@@ -372,6 +372,8 @@ Great framework for rapidly building prototypes and good enough to be used in pr
 
 Micromodal.js is a lightweight, configurable and a11y-enabled modal library written in pure JavaScript.
 
+For other vanilla JS plugins, check [PlainJS](https://plainjs.com/javascript/plugins/)
+
 ### Resources
 
 #### Suggestions
