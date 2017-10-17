@@ -91,6 +91,8 @@ You're free to use whatever software you want (including none at all) to design,
 
 Choice of typefaces should be tailored for the project's needs. If doing work primarily for the Web, the typefaces should be optimised and license-able for Web use. We have accounts at several subscription services, so we recommend you browse and consider those first when choosing typefaces for a project. You'll find a list of these services, along with other relevant links, below.
 
+Please be mindful of the impact Webfonts will have on the site's performance. Most services require loading additional external resources, which delays the site's first paint. If possible, try to choose typefaces that we can embed directly via `@font-face`.
+
 ### Presentation and Mock-ups
 
 You're free to use whatever tools you prefer to present proposals and/or mock-ups to clients, but we recommend using InVision for prototyping UI work. It's a robust service, has an almost seamless integration with Sketch and has proved to be client-friendly. For other types of work, we're partial to using short and to-the-point PDF presentations.
@@ -111,10 +113,11 @@ As soon as the design work has been approved and it's moving to code, you should
 * https://typekit.com/ (1)
 * https://www.myfonts.com/info/mls
 * https://fontstand.com
+* https://www.fontspring.com/web-fonts
 * https://www.typography.com/cloud/welcome (2)
 
 (1) Login credentials on LastPass
-(2) Legacy. Usage on new projects is discouraged.
+(2) Legacy. Usage on new projects is discouraged
 
 #### Suggestions
 
