@@ -111,10 +111,11 @@ As soon as the design work has been approved and it's moving to code, you should
 * https://typekit.com/ (1)
 * https://www.myfonts.com/info/mls
 * https://fontstand.com
+* https://www.fontspring.com/web-fonts
 * https://www.typography.com/cloud/welcome (2)
 
 (1) Login credentials on LastPass
-(2) Legacy. Usage on new projects is discouraged.
+(2) Legacy. Usage on new projects is discouraged
 
 #### Suggestions
 
