@@ -154,25 +154,6 @@ We use different templating engines, depending on the project's backend.
 
 We use SASS as the standard for our styling needs.
 
-### Structure
-
-We use a custom file structure:
-```
-|—base
-  |—styled
-|—layouts
-|—components
-|—pages
-```
-
-Explanation:
-
-* `base` – ...
-   * `styled` – ...
-* `layouts` – ...
-* `components` – ...
-* `pages` – ...
-
 ### Methodology
 
 We use [Airbnb's css style guide](https://github.com/airbnb/css) as the basis for our CSS methodology, with some minor exceptions and adaptations:
@@ -249,6 +230,10 @@ h1 {
 }
 ```
 
+### "Styled" strategy
+
+...
+
 ### Responsive Breakpoints
 
 Regardless of how pages have been designed, breakpoints should be structured according to a mobile-first mindset. This means all default styles should be targeted at the mobile version, and overrides progressively introduced for larger screens, through the use of media queries. Using mobile-specific breakpoints is ok when trying to override default values specifically and uniquely for mobile.
@@ -270,6 +255,23 @@ Regardless of how pages have been designed, breakpoints should be structured acc
 ### File Structure
 
 Different projects may require different file structuring, but in general it's a good idea to split styles into several files and, for larger projects, organise them into folders. Please use your best judgement here, and choose the structure that you believe suits the project best. If your css files are getting too long, it's probably a good sign that you need to reconsider how files are structured.
+
+We recommend the following structure wich is also presented in the [frontend-boilerplate](#):
+```
+|—base
+  |—styled
+|—layouts
+|—components
+|—pages
+```
+
+Explanation:
+
+* `base` – ...
+   * `styled` – ...
+* `layouts` – ...
+* `components` – ...
+* `pages` – ...
 
 ### Design Systems
 
