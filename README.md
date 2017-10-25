@@ -154,6 +154,25 @@ We use different templating engines, depending on the project's backend.
 
 We use SASS as the standard for our styling needs.
 
+### Structure
+
+We use a custom file structure:
+```
+|—base
+  |—styled
+|—layouts
+|—components
+|—pages
+```
+
+Explanation:
+
+* `base` – ...
+   * `styled` – ...
+* `layouts` – ...
+* `components` – ...
+* `pages` – ...
+
 ### Methodology
 
 We use [Airbnb's css style guide](https://github.com/airbnb/css) as the basis for our CSS methodology, with some minor exceptions and adaptations:
@@ -173,12 +192,16 @@ Our naming conventions follow BEM's methodology, with a couple of twists:
     </header>
     ```
     ```scss
+    // components/_header.scss
     .header {
-     // ...
      .-button {
       position: absolute;
       top: 0;
       right: 0;
+     }
+     
+     // components/_button.scss
+     .button {
      }
     }
     ```
