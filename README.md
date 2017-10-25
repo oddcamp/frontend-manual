@@ -494,10 +494,6 @@ Even though ideally all the JavaScript code should be placed in external files, 
 
 Avoid inlining JavaScript everywhere else.
 
-#### Inlining CSS
-
-CSS should only be inlined in `<head></head>`.
-
 #### Performant jQuery code
 
 jQuery selectors are expensive therefore we should cache jQuery selectors into variables.
