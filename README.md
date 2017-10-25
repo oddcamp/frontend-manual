@@ -212,15 +212,14 @@ Our naming conventions follow BEM's methodology, with a couple of twists:
 
 ```scss
 .component {
- width: rem(100); // 100px
- // or
- width: em(100); // 100px
+ width: em(320); // 320px
+ padding: rem(30 20); // 30px 20px
 }
 ```
 
 Direct input of these units should avoided, but it's ok when it makes more sense when setting proportial values:
 
-```css
+```scss
 h1 {
  font-size: rem(36); // 36px
  
@@ -238,7 +237,7 @@ h1 {
 
 Regardless of how pages have been designed, breakpoints should be structured according to a mobile-first mindset. This means all default styles should be targeted at the mobile version, and overrides progressively introduced for larger screens, through the use of media queries. Using mobile-specific breakpoints is ok when trying to override default values specifically and uniquely for mobile.
 
-```css
+```scss
 .element {
   /* Default styles */
 
