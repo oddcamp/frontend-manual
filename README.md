@@ -169,7 +169,7 @@ Our naming conventions follow BEM's methodology, with a couple of twists:
     If the `.button` is a global component, prefixing the selector with dash in `.header` scope prevents the conflict. The strategy also stands for a case when the `.header` element hosts the global component of `.button` with some modifier styles:
     ```html
     <header class="header">
-     <a href="/about" class="button -button">About</a>
+     <a href="/about" class="-button button">About</a>
     </header>
     ```
     ```scss
