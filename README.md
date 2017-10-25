@@ -162,13 +162,13 @@ We use [Airbnb's css style guide](https://github.com/airbnb/css) as the basis fo
 
 Our naming conventions follow BEM's methodology, with a couple of twists:
 
-* Nested single class names should start with a dash:
+* Nested single class names should start with a dash, so that it doesn't conflict with first-level components:
     * 👌 `.header .-button` is good
     * ❌ `.header .button` should be avoided
 
 * Classes shouldn't be chained above three levels:
-    * 👌 `.header__navigation .-link` is good
-    * ✅ `.header__navigation__links .-link` is ok
+    * 👌 `.header__navigation` is good
+    * ✅ `.header__navigation__links` is ok
     * ❌ `.header__navigation__links__link` should be avoided
 
 * Classes shouldn't nest more than three levels deep:
@@ -187,7 +187,27 @@ Our naming conventions follow BEM's methodology, with a couple of twists:
 
 #### Units
 
-**Usage of EMs/REMs for everything is recommended**. REMs should be the default, EMs should be used when we need local dependencies and PXs only for the rare cases when things aren't supposed to scale at all. EMs and REMs should be calculated through an helper, and never input manually (if you're setting up a design system, the boilerplate comes with a simple functions called [ds-em](https://github.com/kollegorna/design-system-boilerplate/blob/master/scss/config/_type.scss#L55) and [ds-rem](https://github.com/kollegorna/design-system-boilerplate/blob/master/scss/config/_type.scss#L59)).
+**Usage of EMs/REMs for everything is recommended**. REMs should be the default, EMs should be used when we need local dependencies and PXs only for the rare cases when things aren't supposed to scale at all. EMs and REMs should be calculated through a helper (the boilerplate comes with a simple functions called [em](#) and [rem]#):
+
+```css
+.component {
+ width: rem(100); // 100px
+ // or
+ width: em(100); // 100px
+}
+```
+
+Direct input of these units should avoided, but it's ok when it makes more sense when setting proportial values:
+
+```css
+h1 {
+ font-size: rem(36); // 36px
+ 
+ sup {
+  font-size: .5em; // 36/2 = 18px
+ }
+}
+```
 
 ### Responsive Breakpoints
 
