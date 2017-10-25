@@ -162,9 +162,23 @@ We use [Airbnb's css style guide](https://github.com/airbnb/css) as the basis fo
 
 Our naming conventions follow BEM's methodology, with a couple of twists:
 
-* Nested single class names should start with a dash, so that it doesn't conflict with first-level components:
+* Nested single class names should start with a dash, so that it doesn't conflict with global components:
     * 👌 `.header .-button` is good
     * ❌ `.header .button` should be avoided
+    
+    If the `.button` is a global component, prefixing the selector with dash in `.header` scope prevents the conflict. The strategy also stands for a case when the `.header` element hosts the global component of `.button` with some modifier styles:
+    ```html
+    <header class="header>
+     <a href="/about" class="button -button">About</a>
+    </header>
+    ```
+    ```css
+    .header .-button {
+     position: absolute;
+     top: 0;
+     right: 0;
+    }
+    ```
 
 * Classes shouldn't be chained above three levels:
     * 👌 `.header__navigation` is good
