@@ -168,15 +168,18 @@ Our naming conventions follow BEM's methodology, with a couple of twists:
     
     If the `.button` is a global component, prefixing the selector with dash in `.header` scope prevents the conflict. The strategy also stands for a case when the `.header` element hosts the global component of `.button` with some modifier styles:
     ```html
-    <header class="header>
+    <header class="header">
      <a href="/about" class="button -button">About</a>
     </header>
     ```
-    ```css
-    .header .-button {
-     position: absolute;
-     top: 0;
-     right: 0;
+    ```scss
+    .header {
+     // ...
+     .-button {
+      position: absolute;
+      top: 0;
+      right: 0;
+     }
     }
     ```
 
@@ -203,7 +206,7 @@ Our naming conventions follow BEM's methodology, with a couple of twists:
 
 **Usage of EMs/REMs for everything is recommended**. REMs should be the default, EMs should be used when we need local dependencies and PXs only for the rare cases when things aren't supposed to scale at all. EMs and REMs should be calculated through a helper (the boilerplate comes with a simple functions called [em](#) and [rem]#):
 
-```css
+```scss
 .component {
  width: rem(100); // 100px
  // or
