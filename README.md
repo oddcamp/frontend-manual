@@ -22,9 +22,12 @@ These things are the default for all our projects unless anything else is specif
   * [Resources](#resources-1)
 - [CSS](#css)
   * [Preprocessor](#preprocessor)
-  * [Methodology](#methodology)
+  * [File Structure and Boilerplate](#file-structure-and-boilerplate)
+  * [Componentization](#componentization)
+  * [Naming](#naming)
+  * [Units](#units)
+  * [Styled Approach](#styled-approach)
   * [Responsive Breakpoints](#responsive-breakpoints)
-  * [File Structure](#file-structure)
   * [Design Systems](#design-systems)
   * [Resources](#resources-2)
 - [JavaScript](#javascript)
@@ -71,7 +74,7 @@ We expect certain dependencies to be bundled in by default with all of our proje
 #### Yarn
 
 * `yarn init`
-* `yarn add normalize-scss`
+* `yarn add package-name`
 
 ### Add .editorconfig
 
@@ -150,84 +153,153 @@ We use different templating engines, depending on the project's backend.
 
 ## CSS
 
+We use [Airbnb's css style guide](https://github.com/airbnb/css) as the basis for our CSS methodology and BEM for naming conventions, both with some minor exceptions and adaptations.
+
 ### Preprocessor
 
-We use SASS as the standard for our styling needs.
+* We use [SASS](https://sass-lang.com) as the standard for our styling needs.
+* We use [Styled Components](https://www.styled-components.com) for JS frameworks based projects.
 
-### Methodology
+### File Structure and Boilerplate
 
-We use [Airbnb's css style guide](https://github.com/airbnb/css) as the basis for our CSS methodology, with some minor exceptions and adaptations:
+Different projects may require different file structuring, but in general it's a good idea to split styles into several files and, for larger projects, organise them into folders. Please use your best judgement here, and choose the structure that you believe suits the project best. If your css files are getting too long, it's probably a good sign that you need to reconsider how files are structured.
 
-#### Naming
+We strongly recommend using our [SASS-Boilerplate](https://github.com/kollegorna/sass-boilerplate) in pair with [SASS-Utils](https://github.com/kollegorna/sass-utils) for SASS projects. Please follow the guidelines provided on the boilerplate's repository page.
 
-Our naming conventions follow BEM's methodology, with a couple of twists:
+### Componentization
 
-* Nested single class names should start with a dash, so that it doesn't conflict with global components:
-    * 👌 `.header .-button` is good
-    * ❌ `.header .button` should be avoided
-    
-    If the `.button` is a global component, prefixing the selector with dash in `.header` scope prevents the conflict. The strategy also stands for a case when the `.header` element hosts the global component of `.button` with some modifier styles:
-    ```html
-    <header class="header">
-     <a href="/about" class="-button button">About</a>
-    </header>
-    ```
-    ```scss
-    // components/_header.scss
-    .header {
-     .-button {
-      position: absolute;
-      top: 0;
-      right: 0;
-     }
-     
-     // components/_button.scss
-     .button {
-     }
+Treating the whole page as a single component can easily get you in a selector chain hell, it becomes difficult to use parent modifier classes that affect child elements. Therefore it's recomended to go with React-like approach and treat the page as a combination or multiple and small components, which by the nature are easily reusable, extendable. Avoid complex SASS constructions like this:
+
+```scss
+.settings {
+  // ...
+
+  &__wrapper {
+    // ...
+
+    &__nav {
+      // ...
     }
-    ```
 
-* Classes shouldn't be chained above three levels:
-    * 👌 `.header__navigation` is good
-    * ✅ `.header__navigation__links` is ok
-    * ❌ `.header__navigation__links__link` should be avoided
+    &__sidebar {
+      //...
 
-* Classes shouldn't nest more than three levels deep:
-    * 👌 `.header .-button .-link` is good
-    * ❌ `.header .-button .-link .-title` should be avoided
+      &__avatar {
+        // ...
+      }
+    }
+  }
+}
+```
 
-* We should try to follow the “widget wrapper” pattern. Widgets are unique and follow the BEM naming conventions, while subclasses are global and follow simple semantic conventions:
-    * `.header .header__navigation .-link`
-    * `.block .block__links .-link`
+Always strive for breaking things into smaller components like this:
 
-* For performance reasons, we should try to nest classes as little as possible.
+```scss
+.settings-wrapper {
+  // ...
+}
+
+.settings-nav {
+  // ...
+}
+
+.settings-sidebar {
+  // ...
+}
+
+.settings-avatar {
+  // ...
+}
+```
+
+If you have a component which is reused multiple of times on the same page, it's recommended to avoid deciding on it's context, but put that responsibility on a parental component:
+
+```scss
+.settings-avatar {
+  // ...
+}
+
+.settings-sidebar {
+  position: relative;
+
+  .settings-avatar {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+.settings-main {
+  // ...
+
+  .settings-avatar {
+    margin-top: 1.5rem;
+  }
+}
+```
+
+### Naming
+
+* We prefer the use of underscores and dashes over camelCase approach.
+
+* Selectors shouldn't be chained above three levels:
+    * 👌 `.settings-nav` is good
+    * 👌 `.settings-nav__links` is good
+    * ✅ `.settings-nav__links__list` is ok
+    * ❌ `.settings-nav__links__list__item` should be avoided
+
+* In case of a need to chain more than three selector levels consider nesting. Nested single class names should start with a dash which indicates that this selector is scoped/local (belongs to the parent selector) and altogether it doesn't conflict with global components:
+    * 👌 `.settings-nav .-links` is good
+    * ❌ `.settings-nav .links` should be avoided
+
+    Do not confuse the last example with the cases when extending a global component:
+
+    * 👌 `.settings-nav .links` is good if `.links` was a global component and was meant to be extended under the `.settings-nav` component
+
+* For performance reasons, selectors shouldn't nest more than three levels deep:
+    * 👌 `.settings-nav .-links .-list` is good
+    * ❌ `.settings-nav .-links .-list .-item` should be avoided
+
+    They also shouldn't nest when there's no reason to:
+
     * 👌 `.block ul a` is good
     * ❌ `.block ul li a` should be avoided
 
-* We prefer the use of underscores and dashes over Airbnb's suggested camelCase approach;
+### Units
 
-#### Units
+For a better accessibility we should use EMs/REMs and set the font size of the root element (`html`) to a percentage value, preferably `100%`:
 
-**Usage of EMs/REMs for everything is recommended**. REMs should be the default, EMs should be used when we need local dependencies and PXs only for the rare cases when things aren't supposed to scale at all. EMs and REMs should be calculated through a helper (the boilerplate comes with a simple functions called [em](#) and [rem]#):
+```css
+html {
+  font-size: 100%;
+}
+```
+
+This enables the users (most likely visually impaired) to scale the site visually. For example: let's say the root element's font size is as recommend — `100%`. By default the website font size in the browser's settings is set to 16px, which means `1rem = 16px`. But if the user has that option set to `32px` the REM value is going to be affected accordingly: `1rem = 32px`.
+
+REMs should used by default, EMs should be used when we need local dependencies and PXs only for the rare cases when things aren't supposed to scale at all (e.g. 1px thick borders). EMs and REMs should be calculated through a [helper from SASS-Utils](https://github.com/kollegorna/sass-utils#units):
 
 ```scss
 .component {
- width: em(320); // 320px
- padding: rem(30 20); // 30px 20px
+  width: em(320); // 320px
+  padding: rem(30 20); // 30px 20px
+  margin: rem(40 auto); // 40px auto
 }
 ```
 
-Direct input of these units should avoided, but it's ok when it makes more sense when setting proportial values:
+Direct input of these units should avoided, unless you're in a need for proportial sizes:
 
 ```scss
 h1 {
- font-size: rem(36); // 36px
- 
- sup {
-  font-size: .5em; // 36/2 = 18px
- }
+  font-size: rem(36); // 36px
+
+  sup {
+    font-size: .5em; // 18px (half of 36px)
+  }
 }
 ```
+
+**Important:** Media Queries have to be EMs based ([where's why](https://zellwk.com/blog/media-query-units)) which is already solved by a helper from [SASS-Utils](https://github.com/kollegorna/sass-utils#mq-mixin).
 
 ### "Styled" strategy
 
@@ -250,27 +322,6 @@ Regardless of how pages have been designed, breakpoints should be structured acc
   }
 }
 ```
-
-### File Structure
-
-Different projects may require different file structuring, but in general it's a good idea to split styles into several files and, for larger projects, organise them into folders. Please use your best judgement here, and choose the structure that you believe suits the project best. If your css files are getting too long, it's probably a good sign that you need to reconsider how files are structured.
-
-We recommend the following structure wich is also presented in the [frontend-boilerplate](#):
-```
-|—base
-  |—styled
-|—layouts
-|—components
-|—pages
-```
-
-Explanation:
-
-* `base` – ...
-   * `styled` – ...
-* `layouts` – ...
-* `components` – ...
-* `pages` – ...
 
 ### Design Systems
 
@@ -343,7 +394,7 @@ When using this approach, SVG code can go inside one or several .svg files wrapp
   </symbol>
 
   <symbol id="close" viewBox="0 0 40 40">
-    <!-- ... -->  
+    <!-- ... -->
   </symbol>
 
   <!-- ... -->
@@ -437,6 +488,7 @@ Great framework for rapidly building prototypes and good enough to be used in pr
 Micromodal.js is a lightweight, configurable and a11y-enabled modal library written in pure JavaScript.
 
 #### Other libraries
+
 For other vanilla JS plugins, check [PlainJS](https://plainjs.com/javascript/plugins/).
 
 ### Resources
@@ -463,7 +515,7 @@ Code should be compliant with WCAG 2.0 Level AA. This is something that needs to
 When working with elements users are supposed to click or tap on, use HTML tags meant for that purpose:
 
 ```javascript
-$('.btn').on('click', ...
+$('.btn').on('click', ...)
 ```
 
 ✅ DO:
@@ -536,7 +588,7 @@ In cases (e.g. Modernizr) when there's a need to run some JavaScript code in `<h
 <head>
   ...
   <script>
-    ;!function(e,t,n){function o(e,t)...
+    (function(){ /*...*/ })();
   </script>
 </head>
 ```
@@ -544,7 +596,7 @@ In cases (e.g. Modernizr) when there's a need to run some JavaScript code in `<h
 Even though ideally all the JavaScript code should be placed in external files, it's sometimes okay to inline it at the end of the document, preferably after external JS file references, e.g.:
 
 ```html
-    ...
+  <!-- ... -->
   <script src="/main.js" defer></script>
   <script>
     // inlined JS
@@ -563,27 +615,27 @@ jQuery selectors are expensive therefore we should cache jQuery selectors into v
 
 ```javascript
 var $win = $(window);
-$win.on('scroll', ...
-$win.on('resize', ...
+$win.on('scroll', ...)
+$win.on('resize', ...)
 
 $('.items', function() {
   var $item = $(this);
-  $item.attr(...
-  $item.addClass(...
-  $item.on(...
+  $item.attr(...)
+  $item.addClass(...)
+  $item.on(...)
 });
 ```
 
 ❌ DON'T:
 
 ```javascript
-$(window).on('scroll', ...
-$(window).on('resize', ...
+$(window).on('scroll', ...)
+$(window).on('resize', ...)
 
 $('.items', function() {
-  $(this).attr(...
-  $(this).addClass(...
-  $(this).on(...
+  $(this).attr(...)
+  $(this).addClass(...)
+  $(this).on(...)
 });
 ```
 
