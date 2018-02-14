@@ -26,7 +26,7 @@ These things are the default for all our projects unless anything else is specif
   * [Componentization](#componentization)
   * [Naming](#naming)
   * [Units](#units)
-  * [Styled Approach](#styled-approach)
+  * [Styled strategy](#styled-strategy)
   * [Responsive Breakpoints](#responsive-breakpoints)
   * [Design Systems](#design-systems)
   * [Resources](#resources-2)
@@ -212,7 +212,7 @@ Always strive for breaking things into smaller components like this:
 }
 ```
 
-If you have a component which is reused multiple of times on the same page, it's recommended to avoid deciding on it's context, but put that responsibility on a parental component:
+If you have a component which is reused multiple of times on the same page, it's recommended to avoid deciding on its context, but put that responsibility on a parental component:
 
 ```scss
 .settings-avatar {
@@ -287,41 +287,64 @@ REMs should used by default, EMs should be used when we need local dependencies 
 }
 ```
 
-Direct input of these units should avoided, unless you're in a need for proportial sizes:
+Direct input of these units should avoided, unless you're in a need for proportial sizing:
 
 ```scss
 h1 {
   font-size: rem(36); // 36px
 
   sup {
-    font-size: .5em; // 18px (half of 36px)
+    font-size: 0.5em; // 18px (half of 36px)
   }
 }
 ```
 
-**Important:** Media Queries have to be EMs based ([where's why](https://zellwk.com/blog/media-query-units)) which is already solved by a helper from [SASS-Utils](https://github.com/kollegorna/sass-utils#mq-mixin).
+**Important:** Media Queries have to be EMs based ([where's why](https://zellwk.com/blog/media-query-units)). This is already solved by a helper from [SASS-Utils](https://github.com/kollegorna/sass-utils#mq-mixin).
 
-### "Styled" strategy
+### "Styled" Strategy
 
-...
+"Styled" is a strategy for styling HTML elements that are usually inserted via WYSIWYG editors when writing articles, blog posts: `h1-6, p, blockquote, a, ul, ol, dl, table, code, pre`, etc.
+When starting a new project we prefer every HTML element to be by default unstyled (naked) and unopinionated about the context it's. Site-specific styles should only be added when necessary as the project grows. Benefits are:
+
+* No need to overwrite default styles (e.g. remove margins, change hover effects, etc.) when an element is in different context or should be styled differently;
+* No need to track the changes in the default styling of an element and update its every single occurence where the styling was meant to be completely different;
+* Visual consistency among browsers;
+* Smaller size of the final CSS file.
+
+For further details, usage and tips follow the ["Styled" guide on SASS-boilerplate](https://github.com/kollegorna/sass-boilerplate#styled-strategy) repository page.
 
 ### Responsive Breakpoints
 
-Regardless of how pages have been designed, breakpoints should be structured according to a mobile-first mindset. This means all default styles should be targeted at the mobile version, and overrides progressively introduced for larger screens, through the use of media queries. Using mobile-specific breakpoints is ok when trying to override default values specifically and uniquely for mobile.
+You should structure breakpoints to avoid overrides: define shared styles first and put the rest to the appropriate media queries.
 
 ```scss
 .element {
-  /* Default styles */
+  color: #fff;
+  background-color: #000;
+  border-radius: rem(5);
+  // ^ shared styles
 
-  @include media(tablet) {
-    /* Tablet overrides */
+  @include mq(small down) {
+    margin-top: rem(20);
   }
 
-  @include media(desktop) {
-    /* Desktop overrides */
+  @include mq(between small large) {
+    margin-bottom: rem(20);
+  }
+
+  @include mq(large up) {
+    position: absolute;
+    top: rem(20);
+    right: rem(20);
   }
 }
 ```
+
+Benefits are:
+* No need to overwrite styles in a media query when changing or adding the default ones.
+* Smaller size of the final CSS file.
+
+We use [Media Queries helper](https://github.com/kollegorna/sass-utils#media-queries) from our SASS-Utils library.
 
 ### Design Systems
 
@@ -331,6 +354,8 @@ It's common for us to work on several different projects for the same client. Wh
 
 #### Learn More
 
+* https://github.com/kollegorna/sass-boilerplate
+* https://github.com/kollegorna/sass-utils
 * https://github.com/airbnb/css#oocss-and-bem
 * http://getbem.com/introduction/
 * http://www.intelligiblebabble.com/a-pattern-for-writing-css-to-scale
