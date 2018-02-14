@@ -162,13 +162,13 @@ We use [Airbnb's css style guide](https://github.com/airbnb/css) as the basis fo
 
 ### File Structure and Boilerplate
 
-Different projects may require different file structuring, but in general it's a good idea to split styles into several files and, for larger projects, organise them into folders. Please use your best judgement here, and choose the structure that you believe suits the project best. If your css files are getting too long, it's probably a good sign that you need to reconsider how files are structured.
+Different projects may require different file structuring, but in general it's a good idea to split styles into several files and, for larger projects, organise them into folders. Please use your best judgement here, and choose the structure that you believe suits the project best. If your CSS files are getting too long, it's probably a good sign that you need to reconsider how files are structured.
 
-We strongly recommend using our [SASS-Boilerplate](https://github.com/kollegorna/sass-boilerplate) in pair with [SASS-Utils](https://github.com/kollegorna/sass-utils) for SASS projects. Please follow the guidelines provided on the boilerplate's repository page.
+We strongly recommend using our [SASS-Boilerplate](https://github.com/kollegorna/sass-boilerplate) in a pair with [SASS-Utils](https://github.com/kollegorna/sass-utils) for SASS projects. Please follow the guidelines provided on the repository pages.
 
 ### Componentization
 
-Treating the whole page as a single component can easily get you in a selector chain hell, it becomes difficult to use parent modifier classes that affect child elements. Therefore it's recomended to go with React-like approach and treat the page as a combination or multiple and small components, which by the nature are easily reusable, extendable. Avoid complex SASS constructions like this:
+Treating the whole page as a single component can easily get you in a selector chain hell, it becomes difficult to use parent modifier classes that affect child elements, your code becomes spaghetti. Therefore it's recomended to go with React-like approach and treat the page as a combination of multiple and small components, which by the nature are easily reusable, extendable, the code becomes more visually perceivable. Avoid complex SASS constructions like this:
 
 ```scss
 .settings {
@@ -212,7 +212,7 @@ Always strive for breaking things into smaller components like this:
 }
 ```
 
-If you have a component which is reused multiple of times on the same page, it's recommended to avoid deciding on its context, but put that responsibility on a parental component:
+If you have a component which is reused multiple of times on the same page, it's recommended to avoid deciding on its context (i.e. use positioning related properties such as `margin`, `position/top/left/...`), but put that responsibility on a parental component:
 
 ```scss
 .settings-avatar {
@@ -248,11 +248,11 @@ If you have a component which is reused multiple of times on the same page, it's
     * ✅ `.settings-nav__links__list` is ok
     * ❌ `.settings-nav__links__list__item` should be avoided
 
-* In case of a need to chain more than three selector levels consider nesting. Nested single class names should start with a dash which indicates that this selector is scoped/local (belongs to the parent selector) and altogether it doesn't conflict with global components:
+* In case of a need to chain more than three selector levels consider nesting. Nested single class names should start with a dash which indicates that this selector is scoped/local (belongs to the parent selector) and altogether it won't conflict with a probable global component that has the same name:
     * 👌 `.settings-nav .-links` is good
     * ❌ `.settings-nav .links` should be avoided
 
-    Do not confuse the last example with the cases when extending a global component:
+    Important! Do not confuse the last example with the cases of extending a global component:
 
     * 👌 `.settings-nav .links` is good if `.links` was a global component and was meant to be extended under the `.settings-nav` component
 
@@ -275,9 +275,9 @@ html {
 }
 ```
 
-This enables the users (most likely visually impaired) to scale the site visually. For example: let's say the root element's font size is as recommend — `100%`. By default the website font size in the browser's settings is set to 16px, which means `1rem = 16px`. But if the user has that option set to `32px` the REM value is going to be affected accordingly: `1rem = 32px`.
+This enables the users (most likely visually impaired) to scale the site visually. For example: let's say the root element's font size on our site is as recommend — `100%`. By default the website font size in the browser's settings is set to 16px, which means `1rem = 16px`. But if the user has that option set to `32px` the REM value is going to be affected accordingly: `1rem = 32px`. Accessible!
 
-REMs should used by default, EMs should be used when we need local dependencies and PXs only for the rare cases when things aren't supposed to scale at all (e.g. 1px thick borders). EMs and REMs should be calculated through a [helper from SASS-Utils](https://github.com/kollegorna/sass-utils#units):
+REMs should be used by default, EMs when we need local dependencies and PXs only for the rare cases when things aren't supposed to scale at all (e.g. 1px thick borders). EMs and REMs should be calculated through a [helper from SASS-Utils](https://github.com/kollegorna/sass-utils#units):
 
 ```scss
 .component {
@@ -374,23 +374,23 @@ We use [Airbnb's JS style guide](https://github.com/airbnb/javascript) as refere
 
 ### ES6
 
-We use ES6 together with [Babel](https://babeljs.io/), to ensure the code is compiled down into browser-compatible javascript.
+We use ES6 together with [Babel](https://babeljs.io), to ensure the code is compiled down into browser-compatible javascript.
 
 ### jQuery
 
 While jQuery is a great library for querying and manipulating the DOM, it is sometimes easy to over-rely on it. It's ok to use it for larger projects, where a lot of jQuery's functionality is required, or when building quick prototypes, but we should refrain from using it whenever it's clear that ES6 would allow us to build the exact same functionality with little code. If you're only using jQuery as a selector, consider using [Sizzle](https://github.com/jquery/sizzle) instead.
 
-Our suggestion is not to rely on jQuery for animations or transitions, if the same effects can be accomplished purely with CSS (using javascript for class toggling only).
+Our suggestion is not to rely on jQuery for animations or transitions, if the same effects can be accomplished purely with CSS by using JavaScript for class toggling only.
 
 ### Routing
 
-On simple static sites, we encourage the use of [DOM routing](https://www.paulirish.com/2009/markup-based-unobtrusive-comprehensive-dom-ready-execution/), in order to keep the code scoped, cleaner and more readable.
+On simple static sites, we encourage the use of [DOM routing](https://www.paulirish.com/2009/markup-based-unobtrusive-comprehensive-dom-ready-execution), in order to keep the code scoped, cleaner and more readable.
 
 ### Resources
 
 #### Learn More
 
-* https://es6.io/
+* https://es6.io
 
 **[🚡 back to top](#table-of-contents)**
 
@@ -452,7 +452,7 @@ When going with this approach, we should refrain from pasting the SVG code direc
 
 #### Animations
 
-Animating SVGs through CSS or SMIL should be approached with caution. Browser support for CSS Animations is buggy and not wide enough yet, and SMIL is not supported in IE/Edge and will soon be deprecated everywhere else. For the time being, we suggest you use JavaScript libraries such as [Snap.svg](http://snapsvg.io/) or [Velocity.js](http://velocityjs.org/).
+Animating SVGs through CSS or SMIL should be approached with caution. Browser support for CSS Animations is buggy and not wide enough yet, and SMIL is not supported in IE/Edge and will soon be deprecated everywhere else. For the time being, we suggest you use JavaScript libraries such as [Snap.svg](http://snapsvg.io) or [Velocity.js](http://velocityjs.org).
 
 ### Raster
 
@@ -474,8 +474,8 @@ Images should always be optimised before the site goes live. This should be done
 
 #### Tools
 
-* http://nukesaq88.github.io/Pngyu/
-* https://imageoptim.com (https://imageoptim.com/)
+* http://nukesaq88.github.io/Pngyu
+* https://imageoptim.com (https://imageoptim.com)
 * https://tinypng.com/ (for both PNG and JPG)
 
 #### Tutorials
@@ -486,7 +486,7 @@ Images should always be optimised before the site goes live. This should be done
 
 ## Structured Data
 
-Use of JSON-LD and Schema.org (http://schema.org/) definitions to markup content is strongly encouraged whenever its benefits for the project are self-evident. You should use your best judgement in assessing whether or not the benefits justify the time invested in properly structuring data.
+Use of JSON-LD and Schema.org (http://schema.org) definitions to markup content is strongly encouraged whenever its benefits for the project are self-evident. You should use your best judgement in assessing whether or not the benefits justify the time invested in properly structuring data.
 
 ### Resources
 
@@ -508,13 +508,13 @@ This is a small list of libraries we have used and tested exhaustively, and enco
 
 Great framework for rapidly building prototypes and good enough to be used in production. Please bear in mind that just because we use Foundation, we don't have to opt for its components for everything in that project. If you think there is a better library for handling tabs, for example, then go ahead and use that. For most projects, we recommend you use SASS mixins instead of inline class names.
 
-#### [Micromodal.js](https://micromodal.now.sh/)
+#### [Micromodal.js](https://micromodal.now.sh)
 
 Micromodal.js is a lightweight, configurable and a11y-enabled modal library written in pure JavaScript.
 
 #### Other libraries
 
-For other vanilla JS plugins, check [PlainJS](https://plainjs.com/javascript/plugins/).
+For other vanilla JS plugins, check [PlainJS](https://plainjs.com/javascript/plugins).
 
 ### Resources
 
@@ -664,7 +664,7 @@ $('.items', function() {
 });
 ```
 
-Also be sure to check [jQuery code recommendations](https://learn.jquery.com/performance/).
+Also be sure to check [jQuery code recommendations](https://learn.jquery.com/performance).
 
 ### Resources
 
@@ -742,10 +742,10 @@ On WordPress projects, we also use Composer.
 
 #### Javascript
 
-We recommend using [ES lint](http://eslint.org/) with [Airbnb's config](https://www.npmjs.com/package/eslint-config-airbnb).
+We recommend using [ES lint](http://eslint.org) with [Airbnb's config](https://www.npmjs.com/package/eslint-config-airbnb).
 
 #### SASS/CSS
 
-We recommend using either [stylelint](https://stylelint.io/) or [sass-lint](https://github.com/sasstools/sass-lint).
+We recommend using either [stylelint](https://stylelint.io) or [sass-lint](https://github.com/sasstools/sass-lint).
 
 **[🚡 back to top](#table-of-contents)**
