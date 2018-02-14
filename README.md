@@ -357,8 +357,9 @@ It's common for us to work on several different projects for the same client. Wh
 * https://github.com/kollegorna/sass-boilerplate
 * https://github.com/kollegorna/sass-utils
 * https://github.com/airbnb/css#oocss-and-bem
-* http://getbem.com/introduction/
+* http://getbem.com/introduction
 * http://www.intelligiblebabble.com/a-pattern-for-writing-css-to-scale
+* https://zellwk.com/blog/media-query-units
 
 #### Suggestions
 
@@ -632,9 +633,9 @@ Even though ideally all the JavaScript code should be placed in external files, 
 
 Avoid inlining JavaScript everywhere else.
 
-#### Performant jQuery code
+#### Performant and tidy jQuery code
 
-jQuery selectors are expensive therefore we should cache jQuery selectors into variables.
+jQuery selectors should be cached into variables both for performance reasons and better code readability.
 
 ✅ DO:
 
