@@ -34,6 +34,7 @@ These things are the default for all our projects unless anything else is specif
   * [Style](#style)
   * [ES6](#es6)
   * [jQuery](#jquery)
+  * [Animations](#animations)
   * [Routing](#routing)
   * [Resources](#resources-3)
 - [Media](#media)
@@ -78,7 +79,7 @@ We expect certain dependencies to be bundled in by default with all of our proje
 
 ### Add .editorconfig
 
-All projects should have an [.editorconfig file](examples/.editorconfig) by default. If your editor doesn't have built-in editorconfig support, please [install the necessary plug-ins](http://editorconfig.org/#download).
+All projects must have an [.editorconfig file](examples/.editorconfig) by default. If your editor doesn't have built-in editorconfig support, please [install the necessary plug-ins](http://editorconfig.org/#download).
 
 **[🚡 back to top](#table-of-contents)**
 
@@ -346,13 +347,21 @@ Benefits are:
 
 We use [Media Queries helper](https://github.com/kollegorna/sass-utils#media-queries) from our SASS-Utils library.
 
+### Usability and Accessibility
+
+#### Indicating Interaction
+
+TODO
+
+#### Outline
+
+TODO
+
 ### Design Systems
 
 It's common for us to work on several different projects for the same client. When this happens, we've found it useful to develop a collection of global, reusable styles — which we call a Design System. When declared as a dependency on a project, a design system gives us a nice collection of sensible defaults we can use to get started faster. Should the need arise, it also lets us update one default style across all projects related to a specific client. If you believe a design system would be beneficial in the long run, there is [a boilerplate with some sensible defaults in place](https://github.com/kollegorna/design-system-boilerplate). The repo includes instructions on how to set it up, as well as recommendations on how to seamlessly include it in your project without disrupting your workflow.
 
 ### Resources
-
-#### Learn More
 
 * https://github.com/kollegorna/sass-boilerplate
 * https://github.com/kollegorna/sass-utils
@@ -360,10 +369,6 @@ It's common for us to work on several different projects for the same client. Wh
 * http://getbem.com/introduction
 * http://www.intelligiblebabble.com/a-pattern-for-writing-css-to-scale
 * https://zellwk.com/blog/media-query-units
-
-#### Suggestions
-
-* Always use spaces instead of tabs to indent CSS (make sure [.editorconfig](#add-editorconfig) is properly set up and you can safely forget about it);
 
 **[🚡 back to top](#table-of-contents)**
 
@@ -381,17 +386,24 @@ We use ES6 together with [Babel](https://babeljs.io), to ensure the code is comp
 
 While jQuery is a great library for querying and manipulating the DOM, it is sometimes easy to over-rely on it. It's ok to use it for larger projects, where a lot of jQuery's functionality is required, or when building quick prototypes, but we should refrain from using it whenever it's clear that ES6 would allow us to build the exact same functionality with little code. If you're only using jQuery as a selector, consider using [Sizzle](https://github.com/jquery/sizzle) instead.
 
-Our suggestion is not to rely on jQuery for animations or transitions, if the same effects can be accomplished purely with CSS by using JavaScript for class toggling only.
+### Performance
 
-### Routing
+#### Throttling and Debouncing
 
-On simple static sites, we encourage the use of [DOM routing](https://www.paulirish.com/2009/markup-based-unobtrusive-comprehensive-dom-ready-execution), in order to keep the code scoped, cleaner and more readable.
+TODO
+
+#### Passive Event Listeners
+
+TODO
+
+### Animations
+
+Our suggestion is not to rely on JavaScript for animations or transitions, if the same effects can be accomplished purely with CSS (using JavaScript for class toggling only).
 
 ### Resources
 
-#### Learn More
-
 * https://es6.io
+* https://medium.com/@_jh3y/throttling-and-debouncing-in-javascript-b01cad5c8edf
 
 **[🚡 back to top](#table-of-contents)**
 
@@ -560,23 +572,23 @@ $('.btn').on('click', ...)
 
 #### Learn More
 
-* http://webaim.org/intro/ (required reading)
+* http://webaim.org/intro (required reading)
 * https://madebysidecar.com/journal/accessibility-basics-for-designers
 * http://webaim.org/standards/wcag/checklist
 * https://developer.mozilla.org/en-US/docs/Web/Accessibility
 * https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA
-* https://webbriktlinjer.se/r/1-utga-fran-wcag-2-0-niva-aa/ (Swedish)
+* https://webbriktlinjer.se/r/1-utga-fran-wcag-2-0-niva-aa (Swedish)
 
 #### Docs & specs
 
-* http://checkers.eiii.eu/en/pagecheck2.0/
-* http://achecker.ca/checker/
-* http://cynthiasays.com/
+* http://checkers.eiii.eu/en/pagecheck2.0
+* http://achecker.ca/checker
+* http://cynthiasays.com
 * http://www.tawdis.net/ingles.html?lang=en
 
 #### Tools
 
-* http://webaim.org/resources/contrastchecker/
+* http://webaim.org/resources/contrastchecker
 
 #### Suggestions
 
