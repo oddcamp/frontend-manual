@@ -133,7 +133,7 @@ As soon as the design work has been approved and it's moving to code, you should
 
 ### Semantics
 
-We should make an effort to produce valid semantic HTML, that takes advantage of the full potential of HTML5's tags to produce clean code, that is readable by humans and machines alike.
+We should make an effort to produce valid [semantic HTML](https://codepen.io/mi-lee/post/an-overview-of-html5-semantics), that takes advantage of the full potential of HTML5's tags to produce clean code, that is readable by humans and machines alike.
 
 ### Templating Languages
 
@@ -144,9 +144,15 @@ We use different templating engines, depending on the project's backend.
 * **Handlebars** for Ember
 * **JSX** for React
 
-### Resources
+### Smart Quotes
 
-#### Learn More
+TODO
+
+### Recommended `<head>` tags
+
+TODO
+
+### Learn More
 
 * https://codepen.io/mi-lee/post/an-overview-of-html5-semantics
 
@@ -159,7 +165,7 @@ We use [Airbnb's css style guide](https://github.com/airbnb/css) as the basis fo
 ### Preprocessor
 
 * We use [SASS](https://sass-lang.com) as the standard for our styling needs.
-* We use [Styled Components](https://www.styled-components.com) for JS frameworks based projects.
+* We use [Styled Components](https://www.styled-components.com) and [Polished](https://polished.js.org) for JS frameworks based projects.
 
 ### File Structure and Boilerplate
 
@@ -357,6 +363,14 @@ TODO
 
 TODO
 
+### Performance
+
+TODO (don't animate top/left)
+
+### Fonts
+
+TODO (never insert directly, use `@include ff-...`)
+
 ### Design Systems
 
 It's common for us to work on several different projects for the same client. When this happens, we've found it useful to develop a collection of global, reusable styles — which we call a Design System. When declared as a dependency on a project, a design system gives us a nice collection of sensible defaults we can use to get started faster. Should the need arise, it also lets us update one default style across all projects related to a specific client. If you believe a design system would be beneficial in the long run, there is [a boilerplate with some sensible defaults in place](https://github.com/kollegorna/design-system-boilerplate). The repo includes instructions on how to set it up, as well as recommendations on how to seamlessly include it in your project without disrupting your workflow.
@@ -380,21 +394,158 @@ We use [Airbnb's JS style guide](https://github.com/airbnb/javascript) as refere
 
 ### ES6
 
-We use ES6 together with [Babel](https://babeljs.io), to ensure the code is compiled down into browser-compatible javascript.
+We prefer using ES6 together with [Babel](https://babeljs.io), to ensure the code is compiled down into browser-compatible JavaScript.
+
+### Progressive Enhancement, Graceful Degradation
+
+TODO
+
+### JS Utils
+
+We maintain and use [JS Utils](https://github.com/kollegorna/js-utils) library on real-life projects for easier development. The code examples below also rely on the library.
 
 ### jQuery
 
-While jQuery is a great library for querying and manipulating the DOM, it is sometimes easy to over-rely on it. It's ok to use it for larger projects, where a lot of jQuery's functionality is required, or when building quick prototypes, but we should refrain from using it whenever it's clear that ES6 would allow us to build the exact same functionality with little code. If you're only using jQuery as a selector, consider using [Sizzle](https://github.com/jquery/sizzle) instead.
+We discourage using jQuery for new projects if possible. Instead, strive to rely on dependency-free lightweight libraries, such as JS Utils and [similar ones](https://github.com/kollegorna/js-utils#other-resources).
 
-### Performance
+### Selecting DOM elements
+
+TODO (prefix with js-)
+
+### Accessibility
+
+* When working with elements users are supposed to press on, use HTML tags meant for that purpose:
+
+    ```js
+    addEventListener('.btn', 'click', doSomething)
+    ```
+
+    ✅ DO:
+    ```html
+    <button class="btn" type="button">Go baby!</button>
+    ```
+
+    ❌ DON'T:
+    ```html
+    <div class="btn">Go baby!</div>
+    ```
+
+* When crafting rich (JS enhanced) UI, always make sure it is usable by keyboard and screen readers:
+  - it embraces [ARIA](https://developers.google.com/web/fundamentals/accessibility/semantics-aria) attribures
+  - visually hidden elements are excluded from tab order
+  - the rest of the page is excluded from tab order when modal is opened
+  - dropdown menus and tabs work with Tab, Arrow buttons
+
+### Performance and Optimization
+
+#### Embedding JavaScript
+
+Avoid placing JS file insertions in <head> that work in a synchronous manner and therefore blocks rendering of the page. The more such an occasions, the later users start seeing the page. JavaScript file embeds should be placed right before </body> tag preferably with [`defer` or `async`](http://www.growingwiththeweb.com/2014/02/async-vs-defer-attributes.html) attributes inserted along.
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    ...
+  </head>
+  <body>
+    ...
+    <script src="/main.js" defer></script>
+  </body>
+</html>
+```
+
+In cases (e.g. Modernizr) when there's a need to run some JavaScript code in `<head></head>` before page renders, it's best to minify and inline it:
+
+```html
+<head>
+  ...
+  <script>
+    (function(){ /*...*/ })();
+  </script>
+</head>
+```
+
+Even though ideally all the JavaScript code should be placed in external files, it's sometimes okay to inline it at the end of the document, preferably after external JS file references, e.g.:
+
+```html
+  <!-- ... -->
+  <script src="/main.js" defer></script>
+  <script>
+    // inlined JS
+  </script>
+</body>
+</html>
+```
+
+Avoid inlining JavaScript everywhere else.
 
 #### Throttling and Debouncing
 
-TODO
+Attaching "heavy" functions to scroll, resize events can be cause of [unresponsive pages, even browser crashes](https://css-tricks.com/debouncing-throttling-explained-examples), excessive Ajax requests, etc. By default, always use handler [throttling](https://github.com/kollegorna/js-utils#throttlejs) and [deboucing](https://github.com/kollegorna/js-utils#debouncejs) for `scroll`, `resize` events:
+
+```js
+addEventListener(window, 'resize', debounce(500, () => {
+  // do something expensive here
+}))
+
+addEventListener(window, 'scroll', throttle(500, () => {
+  // do something expensive here
+}))
+
+// minimize Ajax requests for repetitive cart quantity button clicks
+addEventListener(qtyBtn, 'click', debounce(300, ajaxCartQtyChange))
+```
 
 #### Passive Event Listeners
 
+Use passive event listeners whenever possible – this can [improve scrolling performance](https://developers.google.com/web/tools/lighthouse/audits/passive-event-listeners).
+
+```js
+const doesSomethingNice = () => {
+  // do something nice here
+}
+
+addEventListener(window, 'touchstart', doesSomethingNice, {passive: true})
+```
+
+#### Lazy-loading Large Libraries
+
 TODO
+
+#### Performant and Tidy jQuery Code
+
+In case you still have to use jQuery use it wisely. jQuery selectors should be cached into variables both for optimization reason and better code readability. Variable names that hold a jQuery object value should be prefixed with `$` sign.
+
+✅ DO:
+
+```js
+var $win = $(window);
+$win.on('scroll', ...)
+$win.on('resize', ...)
+
+$('.items', function() {
+  var $item = $(this);
+  $item.attr(...)
+  $item.addClass(...)
+  $item.on(...)
+});
+```
+
+❌ DON'T:
+
+```js
+$(window).on('scroll', ...)
+$(window).on('resize', ...)
+
+$('.items', function() {
+  $(this).attr(...)
+  $(this).addClass(...)
+  $(this).on(...)
+});
+```
+
+Also be sure to check [jQuery performance guide](https://learn.jquery.com/performance).
 
 ### Animations
 
@@ -402,8 +553,10 @@ Our suggestion is not to rely on JavaScript for animations or transitions, if th
 
 ### Resources
 
+* https://github.com/kollegorna/js-utils
+* https://developers.google.com/web/fundamentals/accessibility/semantics-aria
 * https://es6.io
-* https://medium.com/@_jh3y/throttling-and-debouncing-in-javascript-b01cad5c8edf
+* https://css-tricks.com/debouncing-throttling-explained-examples
 
 **[🚡 back to top](#table-of-contents)**
 
@@ -423,7 +576,7 @@ Whenever you want your SVG's paths' colours to be customisable through CSS, this
 
 When using this approach, SVG code can go inside one or several .svg files wrapped in a `<symbol>` tag:
 
-```svg
+```html
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
   <symbol id="menu" viewBox="0 0 40 40">
@@ -546,28 +699,6 @@ Building applications and websites that are usable for as many people (and bots)
 
 Code should be compliant with WCAG 2.0 Level AA. This is something that needs to be considered in the design process as well as one of the ingredients in the WCAG mix is color contrast.
 
-### Best Practices
-
-#### Interactive Elements
-
-When working with elements users are supposed to click or tap on, use HTML tags meant for that purpose:
-
-```javascript
-$('.btn').on('click', ...)
-```
-
-✅ DO:
-
-```html
-<button class="btn" type="button">Go baby!</button>
-```
-
-❌ DON'T:
-
-```html
-<div class="btn">Go baby!</div>
-```
-
 ### Resources
 
 #### Learn More
@@ -599,93 +730,7 @@ $('.btn').on('click', ...)
 
 ## Performance
 
-### Best Practices
-
-#### Embedding external resources
-
-We should avoid placing external resource embed codes in <head> that work in a synchronous manner and therefore blocks rendering of the page. The more such an occasions, the later users start seeing the page. Asynchronous CSS is encouraged, but due to its complex nature it is okay to have a (single preferably) synchronous CSS file reference. JavaScript embeds should be placed right before </body> tag preferably with [`defer` or `async`](http://www.growingwiththeweb.com/2014/02/async-vs-defer-attributes.html) attributes inserted along.
-
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <link rel="stylesheet" href="/main.css">
-  </head>
-  <body>
-    ...
-    <script src="/main.js" defer></script>
-  </body>
-</html>
-```
-
-#### Inlining JavaScript
-
-In cases (e.g. Modernizr) when there's a need to run some JavaScript code in `<head></head>` we should keep it as short as possible and inline it by making sure it's minified in the production.
-
-```html
-<head>
-  ...
-  <script>
-    (function(){ /*...*/ })();
-  </script>
-</head>
-```
-
-Even though ideally all the JavaScript code should be placed in external files, it's sometimes okay to inline it at the end of the document, preferably after external JS file references, e.g.:
-
-```html
-  <!-- ... -->
-  <script src="/main.js" defer></script>
-  <script>
-    // inlined JS
-  </script>
-</body>
-</html>
-```
-
-Avoid inlining JavaScript everywhere else.
-
-#### Performant and tidy jQuery code
-
-jQuery selectors should be cached into variables both for performance reasons and better code readability.
-
-✅ DO:
-
-```javascript
-var $win = $(window);
-$win.on('scroll', ...)
-$win.on('resize', ...)
-
-$('.items', function() {
-  var $item = $(this);
-  $item.attr(...)
-  $item.addClass(...)
-  $item.on(...)
-});
-```
-
-❌ DON'T:
-
-```javascript
-$(window).on('scroll', ...)
-$(window).on('resize', ...)
-
-$('.items', function() {
-  $(this).attr(...)
-  $(this).addClass(...)
-  $(this).on(...)
-});
-```
-
-Also be sure to check [jQuery code recommendations](https://learn.jquery.com/performance).
-
-### Resources
-
-#### Learn more
-
-* https://learn.jquery.com/performance/
-
-#### Tools
+### Tools
 
 * https://developers.google.com/speed/pagespeed/
 * https://tools.pingdom.com (only on live sites since the last checked sites are displayed on the page… don't spill any secrets)
@@ -753,12 +798,12 @@ On WordPress projects, we also use Composer.
 
 ### Linters
 
-#### Javascript
+#### JavaScript
 
-We recommend using [ES lint](http://eslint.org) with [Airbnb's config](https://www.npmjs.com/package/eslint-config-airbnb).
+We recommend using [ES lint](http://eslint.org) with [this config](https://github.com/kollegorna/frontend-manual/tree/master/examples/eslint-config.json).
 
 #### SASS/CSS
 
-We recommend using either [stylelint](https://stylelint.io) or [sass-lint](https://github.com/sasstools/sass-lint).
+We recommend using [stylelint](https://stylelint.io) with [this config](https://github.com/kollegorna/frontend-manual/tree/master/examples/stylelint-config.json).
 
 **[🚡 back to top](#table-of-contents)**
