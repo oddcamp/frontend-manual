@@ -506,12 +506,37 @@ const doesSomethingNice = () => {
   // do something nice here
 }
 
-addEventListener(window, 'touchstart', doesSomethingNice, {passive: true})
+addEventListener(el, 'touchstart', doesSomethingNice, {passive: true})
 ```
 
-#### Lazy-loading Large Libraries
+#### Loading Large Libraries Conditionally
 
-TODO
+Consider loading large JavaScript libraries conditionally rather than bundling them in to the main file when you need them very rarely on a website, e.g.: you have a chart only on "about" page:
+
+```js
+const chart = document.querySelector('.about-chart')
+if(chart) {
+  loadScript('chart-lib.js').then(() => {
+    ChartLibObj.create(chart)
+  })
+}
+```
+
+...or you must use a plugin with jQuery dependency while your whole website is jQuery-independent:
+
+```js
+const list = document.querySelector('.sortable-list')
+if(list) {
+  loadScript('jquery-from-cdn.min.js').then(() => {
+    return loadScript('jquery-ui-from-cdn.min.js')
+  })
+  .then(() => {
+    $(list).sortable()
+  })
+}
+```
+
+[loadScript](https://github.com/kollegorna/js-utils#loadscriptsrc-cache--true) is the utility from JS Utils library.
 
 #### Performant and Tidy jQuery Code
 
