@@ -482,7 +482,7 @@ Avoid inlining JavaScript everywhere else.
 
 #### Throttling and Debouncing
 
-Attaching "heavy" functions to scroll, resize events can be cause of [unresponsive pages, even browser crashes](https://css-tricks.com/debouncing-throttling-explained-examples), excessive Ajax requests, etc. By default, always use handler [throttling](https://github.com/kollegorna/js-utils#throttlejs) and [deboucing](https://github.com/kollegorna/js-utils#debouncejs) for `scroll`, `resize` events:
+Attaching "heavy" functions to scroll, resize events can be cause of [unresponsive pages, even browser crashes](https://css-tricks.com/debouncing-throttling-explained-examples), excessive Ajax requests, etc. By default, always use handler [throttling] and [deboucing] for `scroll`, `resize` events:
 
 ```js
 addEventListener(window, 'resize', debounce(500, () => {
@@ -535,8 +535,6 @@ if(list) {
   })
 }
 ```
-
-[loadScript](https://github.com/kollegorna/js-utils#loadscriptsrc-cache--true) is the utility from JS Utils library.
 
 #### Performant and Tidy jQuery Code
 
