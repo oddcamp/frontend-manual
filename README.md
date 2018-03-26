@@ -146,7 +146,10 @@ We use different templating engines, depending on the project's backend.
 
 ### Smart Quotes
 
-TODO
+Use the [correct quotation marks and apostrophes](http://smartquotesforsmartpeople.com) for content:
+
+  * ❌ "Don't be dumb"
+  * 👌 “You’re smart!”
 
 ### Recommended `<head>` tags
 
@@ -155,6 +158,7 @@ TODO
 ### Learn More
 
 * https://codepen.io/mi-lee/post/an-overview-of-html5-semantics
+* * http://smartquotesforsmartpeople.com
 
 **[🚡 back to top](#table-of-contents)**
 
@@ -396,17 +400,17 @@ We use [Airbnb's JS style guide](https://github.com/airbnb/javascript) as refere
 
 We prefer using ES6 together with [Babel](https://babeljs.io), to ensure the code is compiled down into browser-compatible JavaScript.
 
-### Progressive Enhancement, Graceful Degradation
-
-TODO
-
 ### JS Utils
 
 We maintain and use [JS Utils](https://github.com/kollegorna/js-utils) library on real-life projects for easier development. The code examples below also rely on the library.
 
 ### jQuery
 
-We discourage using jQuery for new projects if possible. Instead, strive to rely on dependency-free lightweight libraries, such as JS Utils and [similar ones](https://github.com/kollegorna/js-utils#other-resources).
+We discourage using jQuery for new projects if possible. Instead, strive to rely on dependency-free lightweight libraries, such as JS Utils and [similar ones](https://github.com/kollegorna/js-utils#other-resources) or consider [conditional loading](#loading-large-libraries-conditionally) for jQuery and its plugins.
+
+### Progressive Enhancement, Graceful Degradation
+
+TODO
 
 ### Selecting DOM elements
 
@@ -527,10 +531,10 @@ if(chart) {
 ```js
 const list = document.querySelector('.sortable-list')
 if(list) {
-  loadScript('jquery-from-cdn.min.js').then(() => {
-    return loadScript('jquery-ui-from-cdn.min.js')
-  })
-  .then(() => {
+  serialPromises(
+    () => loadScript('jquery.min.js'), // best if from CDN
+    () => loadScript('jquery-ui.min.js'), // best if from CDN
+  ).then(() => {
     $(list).sortable()
   })
 }
