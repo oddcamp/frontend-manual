@@ -137,7 +137,7 @@ We should make an effort to produce valid [semantic HTML](https://codepen.io/mi-
 
 ### Templating Languages
 
-We use different templating engines, depending on the project's backend.
+We use different templating engines, depending on the project's backend:
 
 * **ERB** for Rails/Middleman
 * **Twig** for Symfony
@@ -151,14 +151,14 @@ Use the [correct quotation marks and apostrophes](http://smartquotesforsmartpeop
   * ❌ "Don't be dumb"
   * 👌 “You’re smart!”
 
-### Recommended `<head>` tags
+### Minimum viable `<head>` tag composition
 
-TODO
+We recommend using [these tags](https://github.com/kollegorna/frontend-manual/tree/master/examples/head-tags-recomended.html) (as well as [manifest.json](https://github.com/kollegorna/frontend-manual/tree/master/examples/manifest.json)) in HEAD area are of the document as a starting point.
 
 ### Learn More
 
 * https://codepen.io/mi-lee/post/an-overview-of-html5-semantics
-* * http://smartquotesforsmartpeople.com
+* http://smartquotesforsmartpeople.com
 
 **[🚡 back to top](#table-of-contents)**
 
@@ -176,6 +176,42 @@ We use [Airbnb's css style guide](https://github.com/airbnb/css) as the basis fo
 Different projects may require different file structuring, but in general it's a good idea to split styles into several files and, for larger projects, organise them into folders. Please use your best judgement here, and choose the structure that you believe suits the project best. If your CSS files are getting too long, it's probably a good sign that you need to reconsider how files are structured.
 
 We strongly recommend using our [SASS-Boilerplate](https://github.com/kollegorna/sass-boilerplate) in a pair with [SASS-Utils](https://github.com/kollegorna/sass-utils) for SASS projects. Please follow the guidelines provided on the repository pages.
+
+### Naming
+
+* We prefer the use of underscores and dashes over camelCase approach.
+
+* Selectors shouldn't be chained above three levels:
+    * 👌 `.settings-nav` is good
+    * 👌 `.settings-nav__links` is good
+    * ✅ `.settings-nav__links__list` is ok
+    * ❌ `.settings-nav__links__list__item` should be avoided
+
+* In case of a need to chain more than three selector levels consider nesting. Nested single class names should start with a dash which indicates that this selector is scoped/local (strictly belongs to the parent selector) and altogether it won't conflict with a probable global component that has the same name:
+    * 👌 `.settings-nav .-links` is good
+    * ❌ `.settings-nav .links` should be avoided
+
+    Important! Do not confuse the last example with the cases of extending a global component:
+
+    * 👌 `.settings-nav .links` is good if `.links` was a global component and was meant to be extended under the `.settings-nav` component
+
+* For performance reasons, selectors shouldn't nest more than three levels deep:
+    * 👌 `.settings-nav .-links__list` is good
+    * 👌 `.settings-nav .-links .-list` is good
+    * ❌ `.settings-nav .-links .-list .-item` should be avoided
+
+    They also shouldn't nest when there's no reason to:
+    * 👌 `.settings-nav ul a` is good
+    * ❌ `.settings-nav ul li a` should be avoided
+
+* For secure scoping reasons modifier classes should be formated in BEM manner or concatenated with double-dashed classname:
+    * 👌 `.settings-nav__hidden` is good
+    * ✅ `.settings-nav.--hidden` is ok
+    * ❌ `.settings-nav.hidden` should be avoided
+
+### Using ID's
+
+Even though ID attribute was primarily designed as accessibility feature for fragmenting document, but the requirement for uniqueness, specificity, componentization are the actual reasons why ID's in CSS should be avoided by any means.
 
 ### Componentization
 
@@ -248,33 +284,6 @@ If you have a component which is reused multiple of times on the same page, it's
   }
 }
 ```
-
-### Naming
-
-* We prefer the use of underscores and dashes over camelCase approach.
-
-* Selectors shouldn't be chained above three levels:
-    * 👌 `.settings-nav` is good
-    * 👌 `.settings-nav__links` is good
-    * ✅ `.settings-nav__links__list` is ok
-    * ❌ `.settings-nav__links__list__item` should be avoided
-
-* In case of a need to chain more than three selector levels consider nesting. Nested single class names should start with a dash which indicates that this selector is scoped/local (belongs to the parent selector) and altogether it won't conflict with a probable global component that has the same name:
-    * 👌 `.settings-nav .-links` is good
-    * ❌ `.settings-nav .links` should be avoided
-
-    Important! Do not confuse the last example with the cases of extending a global component:
-
-    * 👌 `.settings-nav .links` is good if `.links` was a global component and was meant to be extended under the `.settings-nav` component
-
-* For performance reasons, selectors shouldn't nest more than three levels deep:
-    * 👌 `.settings-nav .-links .-list` is good
-    * ❌ `.settings-nav .-links .-list .-item` should be avoided
-
-    They also shouldn't nest when there's no reason to:
-
-    * 👌 `.block ul a` is good
-    * ❌ `.block ul li a` should be avoided
 
 ### Units
 
@@ -414,7 +423,7 @@ TODO
 
 ### Selecting DOM elements
 
-TODO (prefix with js-)
+TODO (prefix with .js--, don't #id)
 
 ### Accessibility
 
@@ -438,7 +447,7 @@ TODO (prefix with js-)
   - it embraces [ARIA](https://developers.google.com/web/fundamentals/accessibility/semantics-aria) attribures
   - visually hidden elements are excluded from tab order
   - the rest of the page is excluded from tab order when modal is opened
-  - dropdown menus and tabs work with Tab, Arrow buttons
+  - dropdown menus and tabs work as least with Tab button (enabling arrow buttons would be a nice touch)
 
 ### Performance and Optimization
 
