@@ -135,15 +135,6 @@ As soon as the design work has been approved and it's moving to code, you should
 
 We should make an effort to produce valid [semantic HTML](https://codepen.io/mi-lee/post/an-overview-of-html5-semantics), that takes advantage of the full potential of HTML5's tags to produce clean code, that is readable by humans and machines alike.
 
-### Templating Languages
-
-We use different templating engines, depending on the project's backend:
-
-* **ERB** for Rails/Middleman
-* **Twig** for Symfony
-* **Handlebars** for Ember
-* **JSX** for React
-
 ### Smart Quotes
 
 Use the [correct quotation marks and apostrophes](http://smartquotesforsmartpeople.com) for content:
@@ -154,6 +145,15 @@ Use the [correct quotation marks and apostrophes](http://smartquotesforsmartpeop
 ### Minimum viable `<head>` tag composition
 
 We recommend using [these tags](https://github.com/kollegorna/frontend-manual/tree/master/examples/head-tags-recomended.html) (as well as [manifest.json](https://github.com/kollegorna/frontend-manual/tree/master/examples/manifest.json)) in HEAD area are of the document as a starting point.
+
+### Templating Languages
+
+We use different templating engines, depending on the project's backend:
+
+* **ERB** for Rails/Middleman
+* **Twig** for Symfony
+* **Handlebars** for Ember
+* **JSX** for React
 
 ### Learn More
 
@@ -215,7 +215,9 @@ Even though ID attribute was primarily designed as accessibility feature for fra
 
 ### Componentization
 
-Treating the whole page as a single component can easily get you in a selector chain hell, it becomes difficult to use parent modifier classes that affect child elements, your code becomes spaghetti. Therefore it's recomended to go with React-like approach and treat the page as a combination of multiple and small components, which by the nature are easily reusable, extendable, the code becomes more visually perceivable. Avoid complex SASS constructions like this:
+Treating the whole page as a single component can easily get you in a selector chain hell, it becomes difficult to use parent modifier classes that affect child elements, your code becomes spaghetti. Therefore it's recomended to go with React-like approach and treat the page as a combination of multiple and small components, which by the nature are easily reusable, extendable, the code becomes more visually perceivable.
+
+❌ Avoid complex SASS constructions like this:
 
 ```scss
 .settings {
@@ -239,7 +241,7 @@ Treating the whole page as a single component can easily get you in a selector c
 }
 ```
 
-Always strive for breaking things into smaller components like this:
+👌 Always strive for breaking things into smaller components like this:
 
 ```scss
 .settings-wrapper {
@@ -303,7 +305,7 @@ REMs should be used by default, EMs when we need local dependencies and PXs only
 .component {
   width: em(320); // 320px
   padding: rem(30 20); // 30px 20px
-  margin: rem(40 auto); // 40px auto
+  margin: rem(40 auto 20); // 40px auto
 }
 ```
 
