@@ -380,7 +380,7 @@ TODO
 
 ### Performance
 
-TODO (don't animate top/left)
+TODO (don't animate top/left, will-change)
 
 ### Fonts
 
@@ -419,13 +419,40 @@ We maintain and use [JS Utils](https://github.com/kollegorna/js-utils) library o
 
 We discourage using jQuery for new projects if possible. Instead, strive to rely on dependency-free lightweight libraries, such as JS Utils and [similar ones](https://github.com/kollegorna/js-utils#other-resources) or consider [conditional loading](#loading-large-libraries-conditionally) for jQuery and its plugins.
 
-### Progressive Enhancement, Graceful Degradation
-
-TODO
-
 ### Selecting DOM elements
 
 TODO (prefix with .js--, don't #id)
+
+### Progressive Enhancement, Graceful Degradation
+
+Treating JavaScript as an ehancement allows to code **fail-safe**, semantic and accessible websites. Take a look at the "Recent news" list example:
+
+  ```html
+  <h3>Recent news</h3>
+  <ul class="recent-news">
+    <li>...</li>
+    <li>...</li>
+    <!-- ... -->
+    <li class="--hidden">...</li>
+    <li class="--hidden">...</li>
+    <!-- ... -->
+  </ul>
+  <a href="/more-posts" class="js--show-more">Show more</a>
+  ```
+  ```js
+  const btn = document.querySelector('.js--show-more')
+  btn.setAttribute('role', 'button')
+  addEventListener(btn, 'click', (e) => {
+    const hiddenItems = document.querySelectorAll('.recent-news li.--hidden')
+    if(hiddenItems.length) {
+      e.preventDefault()
+      btn.removeAttribute('role')
+      removeClass(hiddenItems, '--hidden')
+    }
+  })
+  ```
+
+Instead of assuming JavaScript is there and using `button`, we use `a[href]` which would redirect users to the corresponding page in case if JavaScript is disabled, it failed or hasn't been loaded yet. In parallel we also progressively enhance the experience with some JavasScript which turns the anchor into a semantic button `a[role=button]`. On the first click it reveals the hidden items and on the second it works as a typical anchor that redirects users to the corresponding page.
 
 ### Accessibility
 
@@ -443,6 +470,7 @@ TODO (prefix with .js--, don't #id)
     ❌ DON'T:
     ```html
     <div class="btn">Go baby!</div>
+    <a class="btn">Go baby!</a> <!-- <a> without [href] is inaccessible -->
     ```
 
 * When crafting rich (JS enhanced) UI, always make sure it is usable by keyboard and screen readers:
