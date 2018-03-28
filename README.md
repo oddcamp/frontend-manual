@@ -211,7 +211,7 @@ We strongly recommend using our [SASS-Boilerplate](https://github.com/kollegorna
 
 ### Using ID's
 
-Even though ID attribute was primarily designed as accessibility feature for fragmenting document, but the requirement for uniqueness, specificity, componentization are the actual reasons why ID's in CSS should be avoided by any means.
+Even though ID attribute was primarily designed as an accessibility feature for fragmenting document, but the requirement for uniqueness, specificity, componentization are the actual reasons why ID's in CSS should be avoided by any means.
 
 ### Componentization
 
@@ -421,7 +421,7 @@ We discourage using jQuery for new projects if possible. Instead, strive to rely
 
 ### Selecting DOM elements
 
-TODO (prefix with .js--, don't #id)
+Even though ID attribute was primarily designed as an accessibility feature for fragmenting document, but the requirement for uniqueness, specificity, componentization are the actual reasons why ID's for selecting DOM elements in JS should be avoided by any means.
 
 ### Progressive Enhancement, Graceful Degradation
 
