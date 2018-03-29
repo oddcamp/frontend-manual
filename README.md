@@ -372,11 +372,25 @@ We use [Media Queries helper](https://github.com/kollegorna/sass-utils#media-que
 
 #### Indicating Interaction
 
-TODO
+Visually indicating that an element is available to be interacted with (e.g. a button is clickable) or the interaction has been successful (e.g. the button has been clicked) is a sign of good UX. Therefore we should always look for embracing `:hover` and `:focus` pseudo-classes.
 
 #### Outline
 
-TODO
+Outline is a crucial element when it comes to website accessibility. Even though sometimes it's visually disturbing and unnecessary, we should never remove outline for keyboard users. There's a Smart Outline library at [JS Utils](https://github.com/kollegorna/js-utils) that helps to deal with the issue:
+
+```js
+  initSmartOutline()
+```
+This inits Smart Outline which hides the outline when interacting with a mouse and brings it back when interacting with a keyboard.
+
+In some cases it's really meaningful to reveal the outline for mouse users as well. For example, let's say there is a confirm-type modal that pops up with two buttons ("Delete" and "Cancel"). Adding the focus on the primary action button and revealing the outline would tell the user they can also press "Enter" button to delete an item, e.g.:
+
+```js
+  confirmModal.on('show', (confirmBtn, cancelBtn) => {
+    confirmBtn.focus()
+    showSmartOutline()
+  })
+```
 
 ### Performance
 
