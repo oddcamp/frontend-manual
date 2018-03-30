@@ -398,7 +398,18 @@ TODO (don't animate top/left, will-change)
 
 ### Fonts
 
-TODO (never insert directly, use `@include ff-...`)
+Often times when using multiple typefaces on a project they have different font weights. Usually the default font weight for the document is `400`. However, it happens a lot that the secondary font doesn't have `400` available as font weight by design. It means that each time you set the secondary font for a component, you also have to specify the font weight in order preserve the visual consistency. Our [SASS-Boilerplate](https://github.com/kollegorna/sass-boilerplate) comes with predefined mixins that automates the process, e.g.:
+
+```scss
+  .btn {
+    @include ff-secondary;
+  }
+  // ...becomes:
+  .btn {
+    font-family: SecondaryFontName, sans-serif;
+    font-weight: 500;
+  }
+```
 
 ### Design Systems
 
