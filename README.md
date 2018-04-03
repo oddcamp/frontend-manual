@@ -372,7 +372,7 @@ We use [Media Queries helper](https://github.com/kollegorna/sass-utils#media-que
 
 #### Indicating Interaction
 
-Visually indicating that an element is available to be interacted with (e.g. a button is clickable) or the interaction has been successful (e.g. the button has been clicked) is a sign of good UX. Therefore we should always look for embracing `:hover` and `:focus` pseudo-classes.
+Visually indicating that an element is available to be interacted with (e.g. a button is clickable) or the interaction has been successful (e.g. the button has been clicked) is a sign of good UX. Therefore we should always look for embracing `:hover` and `:active` pseudo-classes.
 
 #### Outline
 
@@ -394,7 +394,8 @@ In some cases it's really meaningful to reveal the outline for mouse users as we
 
 ### Performance
 
-TODO (don't animate top/left, will-change)
+* If possible, do not transition `top/bottom/left/right` properties, use `transform: translate()` instead;
+* Accelerate "expensive" CSS solutions with [`will-change`](https://developer.mozilla.org/en-US/docs/Web/CSS/will-change), but do not overuse it.
 
 ### Fonts
 
@@ -423,6 +424,7 @@ It's common for us to work on several different projects for the same client. Wh
 * http://getbem.com/introduction
 * http://www.intelligiblebabble.com/a-pattern-for-writing-css-to-scale
 * https://zellwk.com/blog/media-query-units
+* https://developer.mozilla.org/en-US/docs/Web/CSS/will-change
 
 **[🚡 back to top](#table-of-contents)**
 
