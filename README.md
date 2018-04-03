@@ -23,11 +23,15 @@ These things are the default for all our projects unless anything else is specif
 - [CSS](#css)
   * [Preprocessor](#preprocessor)
   * [File Structure and Boilerplate](#file-structure-and-boilerplate)
-  * [Componentization](#componentization)
   * [Naming](#naming)
+  * [Using ID's](#using-ids)
+  * [Componentization](#componentization)
   * [Units](#units)
   * [Styled strategy](#styled-strategy)
   * [Responsive Breakpoints](#responsive-breakpoints)
+  * [Usability and Accessibility](#usability-and-accessibility)
+  * [Performance](#performance)
+  * [Fonts](#fonts)
   * [Design Systems](#design-systems)
   * [Resources](#resources-2)
 - [JavaScript](#javascript)
@@ -399,18 +403,22 @@ In some cases it's really meaningful to reveal the outline for mouse users as we
 
 ### Fonts
 
-Often times when using multiple typefaces on a project they have different font weights. Usually the default font weight for the document is `400`. However, it happens a lot that the secondary font doesn't have `400` available as font weight by design. It means that each time you set the secondary font for a component, you also have to specify the font weight in order preserve the visual consistency. Our [SASS-Boilerplate](https://github.com/kollegorna/sass-boilerplate) comes with predefined mixins that automates the process, e.g.:
+* When using webfonts, always be sure to set [web-safe fallback font](https://www.cssfontstack.com) names. Our [SASS-Boilerplate](https://github.com/kollegorna/sass-boilerplate) comes with pre-defined web-safe fonts.
 
-```scss
-  .btn {
-    @include ff-secondary;
-  }
-  // ...becomes:
-  .btn {
-    font-family: SecondaryFontName, sans-serif;
-    font-weight: 500;
-  }
-```
+* Often times when using multiple typefaces on a project they have different font weights. Usually the default font weight for the document is `400`. However, it happens a lot that the secondary font doesn't have `400` available as font weight by design. It means that each time you set the secondary font for a component, you also have to specify the font weight in order preserve the visual consistency. Our [SASS-Boilerplate](https://github.com/kollegorna/sass-boilerplate) comes with predefined mixins that automates the process, e.g.:
+
+    ```scss
+      .btn {
+        @include ff-secondary;
+      }
+
+      // ...becomes:
+
+      .btn {
+        font-family: SecondaryFontName, sans-serif;
+        font-weight: 500;
+      }
+    ```
 
 ### Design Systems
 
@@ -425,6 +433,7 @@ It's common for us to work on several different projects for the same client. Wh
 * http://www.intelligiblebabble.com/a-pattern-for-writing-css-to-scale
 * https://zellwk.com/blog/media-query-units
 * https://developer.mozilla.org/en-US/docs/Web/CSS/will-change
+* https://www.cssfontstack.com
 
 **[🚡 back to top](#table-of-contents)**
 
