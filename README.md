@@ -33,6 +33,7 @@ These things are the default for all our projects unless anything else is specif
   * [Performance](#performance)
   * [Fonts](#fonts)
   * [Design Systems](#design-systems)
+  * [Vendor Prefixes](#vendor-prefixes)
   * [Resources](#resources-2)
 - [JavaScript](#javascript)
   * [Style](#style)
@@ -419,10 +420,14 @@ In some cases it's really meaningful to reveal the outline for mouse users as we
     // ...becomes:
 
     .btn {
-      font-family: SecondaryFontName, sans-serif;
+      font-family: "SecondaryFontName", "Arial", sans-serif;
       font-weight: 500;
     }
     ```
+
+### Vendor Prefixes
+
+Vendor prefixed properties should automatically be inserted by an asset bundlers, therefore it's best to keep your code clean and use only prefix-free properties. This doesn't apply to properties that doesn't have standardized equivalents (such as `-webkit-overflow-scrolling`) or work differently than their standardized equivalents.
 
 ### Design Systems
 
