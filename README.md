@@ -405,19 +405,23 @@ In some cases it's really meaningful to reveal the outline for mouse users as we
 
 * When using webfonts, always be sure to set [web-safe fallback font](https://www.cssfontstack.com) names. Our [SASS-Boilerplate](https://github.com/kollegorna/sass-boilerplate) comes with pre-defined web-safe fonts.
 
+    ```scss
+    $ff-primary: "proxima-nova", "Arial", "Helvetica Neue", "Helvetica", sans-serif;
+    ```
+
 * Often times when using multiple typefaces on a project they have different font weights. Usually the default font weight for the document is `400`. However, it happens a lot that the secondary font doesn't have `400` available as font weight by design. It means that each time you set the secondary font for a component, you also have to specify the font weight in order preserve the visual consistency. Our [SASS-Boilerplate](https://github.com/kollegorna/sass-boilerplate) comes with predefined mixins that automates the process, e.g.:
 
     ```scss
-      .btn {
-        @include ff-secondary;
-      }
+    .btn {
+      @include ff-secondary;
+    }
 
-      // ...becomes:
+    // ...becomes:
 
-      .btn {
-        font-family: SecondaryFontName, sans-serif;
-        font-weight: 500;
-      }
+    .btn {
+      font-family: SecondaryFontName, sans-serif;
+      font-weight: 500;
+    }
     ```
 
 ### Design Systems
