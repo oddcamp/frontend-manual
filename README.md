@@ -7,21 +7,14 @@ These things are the default for all our projects unless anything else is specif
 
 ## Table of Contents
 
-- [Setup](#setup)
-  * [Add dependencies](#add-dependencies)
-  * [Add .editorconfig](#add-editorconfig)
 - [Design](#design)
-  * [Software](#software)
-  * [Typefaces](#typefaces)
-  * [Presentation and Mock-ups](#presentation-and-mock-ups)
-  * [Design Files](#design-files)
-  * [Resources](#resources)
 - [HTML](#html)
   * [Semantics](#semantics)
   * [Templating Languages](#templating-languages)
-  * [Resources](#resources-1)
+  * [Resources](#resources)
 - [CSS](#css)
   * [Preprocessor](#preprocessor)
+  * [Linter](#linter)
   * [File Structure and Boilerplate](#file-structure-and-boilerplate)
   * [Naming](#naming)
   * [Using ID's](#using-ids)
@@ -34,103 +27,37 @@ These things are the default for all our projects unless anything else is specif
   * [Fonts](#fonts)
   * [Design Systems](#design-systems)
   * [Vendor Prefixes](#vendor-prefixes)
-  * [Resources](#resources-2)
+  * [Resources](#resources-1)
 - [JavaScript](#javascript)
   * [Style](#style)
   * [ES6](#es6)
+  * [Linter](#linter-1)
   * [jQuery](#jquery)
   * [Animations](#animations)
   * [Routing](#routing)
-  * [Resources](#resources-3)
+  * [Resources](#resources-2)
 - [Media](#media)
   * [Vector Images (SVG)](#vector-images--svg-)
   * [Raster](#raster)
   * [Icons](#icons)
   * [Screen Sizes and Pixel Density](#screen-sizes-and-pixel-density)
   * [Optimisation](#optimisation)
-  * [Resources](#resources-4)
+  * [Resources](#resources-3)
 - [Structured Data](#structured-data)
-  * [Resources](#resources-5)
+  * [Resources](#resources-4)
 - [Libraries](#libraries)
-  * [Suggested Libraries](#suggested-libraries)
-  * [Resources](#resources-6)
 - [Accessibility](#accessibility)
   * [WCAG 2.0 Level AA](#wcag-20-level-aa)
   * [Best Practices](#best-practices)
-  * [Resources](#resources-7)
+  * [Resources](#resources-5)
 - [Performance](#performance)
   * [Best Practices](#best-practices-1)
-  * [Resources](#resources-8)
+  * [Resources](#resources-6)
 - [Support and Compatibility](#support-and-compatibility)
-  * [Support Checklist](#support-checklist)
-  * [Resources](#resources-9)
-- [Tools](#tools-4)
-  * [Task Runners](#task-runners)
-  * [Dependency Managers](#dependency-managers)
-  * [Linters](#linters)
-
-## Setup
-
-When starting a new project, make sure you do the following:
-
-### Add dependencies
-
-We expect certain dependencies to be bundled in by default with all of our projects. Below is a list of the libraries we recommend all projects include at setup. This list can be updated, so always refer back to it.
-
-#### Yarn
-
-* `yarn init`
-* `yarn add package-name`
-
-### Add .editorconfig
-
-All projects must have an [.editorconfig file](examples/.editorconfig) by default. If your editor doesn't have built-in editorconfig support, please [install the necessary plug-ins](http://editorconfig.org/#download).
-
-**[🚡 back to top](#table-of-contents)**
 
 ## Design
 
-We think adopting a few common sense practices during the early design stages can help prevent friction later on, when we get to code. So we suggest everyone follows a few simple procedures, to ensure the transition from design to code is as seamless and natural as possible.
-
-### Software
-
-You're free to use whatever software you want (including none at all) to design, but please be mindful of the impact your choices will have on the rest of the team. We try to use Sketch as much as possible for UI design, and it should be your preferred tool, as it's accessible to most of the team. Other software (e.g. Adobe CC, Affinity Designer, Principle) can still be used for other tasks, such as illustration, photo manipulation, motion graphics or print, but please make sure choosing it won't block someone else in the team from picking up where you left off.
-
-### Typefaces
-
-Choice of typefaces should be tailored for the project's needs. If doing work primarily for the Web, the typefaces should be optimised and license-able for Web use. We have accounts at several subscription services, so we recommend you browse and consider those first when choosing typefaces for a project. You'll find a list of these services, along with other relevant links, below.
-
-Please be mindful of the impact Webfonts will have on the site's performance. Most services require loading additional external resources, which delays the site's first paint. If possible, try to choose typefaces that we can embed directly via `@font-face`.
-
-### Presentation and Mock-ups
-
-You're free to use whatever tools you prefer to present proposals and/or mock-ups to clients, but we recommend using InVision for prototyping UI work. It's a robust service, has an almost seamless integration with Sketch and has proved to be client-friendly. For other types of work, we're partial to using short and to-the-point PDF presentations.
-
-### Design Files
-
-As soon as the design work has been approved and it's moving to code, you should upload all of the original design files plus any necessary assets (e.g. fonts, icons, original images, etc) to Google Drive, under the client's folder (go to Drive > Clients and check for a folder with the client's name, or create one in case it doesn't exist). **This is required procedure, even for projects you're the only one working on**. Whenever there have been major updates to any of the design files or assets, you should re-upload them (Drive takes care of file history and versioning).
-
-### Resources
-
-#### Tools
-
-* https://www.invisionapp.com
-* https://rightfontapp.com
-
-#### Typeface Services
-
-* https://typekit.com/ (1)
-* https://www.myfonts.com/info/mls
-* https://fontstand.com
-* https://www.fontspring.com/web-fonts
-* https://www.typography.com/cloud/welcome (2)
-
-(1) Login credentials on LastPass
-(2) Legacy. Usage on new projects is discouraged
-
-#### Suggestions
-
-* Whenever possible, try to anticipate your colleagues' involvement in the project beforehand, and plan your software use accordingly.
+See [Design.md](Design.md)
 
 **[🚡 back to top](#table-of-contents)**
 
@@ -151,15 +78,6 @@ Use the [correct quotation marks and apostrophes](http://smartquotesforsmartpeop
 
 We recommend using [these tags](https://github.com/kollegorna/frontend-manual/tree/master/examples/head-tags-recomended.html) (as well as [manifest.json](https://github.com/kollegorna/frontend-manual/tree/master/examples/manifest.json)) in HEAD area are of the document as a starting point.
 
-### Templating Languages
-
-We use different templating engines, depending on the project's backend:
-
-* **ERB** for Rails/Middleman
-* **Twig** for Symfony
-* **Handlebars** for Ember
-* **JSX** for React
-
 ### Learn More
 
 * https://codepen.io/mi-lee/post/an-overview-of-html5-semantics
@@ -175,6 +93,10 @@ We use [Airbnb's css style guide](https://github.com/airbnb/css) as the basis fo
 
 * We use [SASS](https://sass-lang.com) as the standard for our styling needs.
 * We use [Styled Components](https://www.styled-components.com) and [Polished](https://polished.js.org) for JS frameworks based projects.
+
+### Linter
+
+We recommend using [stylelint](https://stylelint.io) with [this config](https://github.com/kollegorna/frontend-manual/tree/master/examples/stylelint-config.json).
 
 ### File Structure and Boilerplate
 
@@ -455,6 +377,10 @@ We use [Airbnb's JS style guide](https://github.com/airbnb/javascript) as refere
 ### ES6
 
 We prefer using ES6 together with [Babel](https://babeljs.io), to ensure the code is compiled down into browser-compatible JavaScript.
+
+### Linter
+
+We recommend using [ES lint](http://eslint.org) with [this config](https://github.com/kollegorna/frontend-manual/tree/master/examples/eslint-config.json).
 
 ### JS Utils
 
@@ -775,30 +701,7 @@ Use of JSON-LD and Schema.org (http://schema.org) definitions to markup content 
 
 ## Libraries
 
-We have a liberal but cautious stance on libraries. We believe they can greatly increase the efficiency of our developers, but also make projects harder to maintain, so they should be used consciously. You're an expert and will have to make the best decision for each and every project.
-
-### Suggested Libraries
-
-This is a small list of libraries we have used and tested exhaustively, and encourage you to use:
-
-#### [Foundation for Sites](http://foundation.zurb.com/sites.html)
-
-Great framework for rapidly building prototypes and good enough to be used in production. Please bear in mind that just because we use Foundation, we don't have to opt for its components for everything in that project. If you think there is a better library for handling tabs, for example, then go ahead and use that. For most projects, we recommend you use SASS mixins instead of inline class names.
-
-#### [Micromodal.js](https://micromodal.now.sh)
-
-Micromodal.js is a lightweight, configurable and a11y-enabled modal library written in pure JavaScript.
-
-#### Other libraries
-
-For other vanilla JS plugins, check [PlainJS](https://plainjs.com/javascript/plugins).
-
-### Resources
-
-#### Suggestions
-
-* When using libraries in production, try to only require/import the pieces you need — e.g. if you're using Foundation's grid, only add Foundation's core, its grid component and any dependencies it may have;
-* When adding a library as a dependency, you should specify a version, to prevent builds from breaking with future updates;
+See [Libraries.md](Libraries.md)
 
 **[🚡 back to top](#table-of-contents)**
 
@@ -850,71 +753,6 @@ Code should be compliant with WCAG 2.0 Level AA. This is something that needs to
 
 ## Support and Compatibility
 
-While we are committed to ensuring the things we build can be used by as many users as possible, we also believe deep retroactive support hinders progress, so we try to make sure our work strikes the right balance of browser and device support.
-
-### Support Checklist
-
-For most projects, we should test exhaustively and make sure things work as expected in the following:
-
-#### Mobile Platforms
-*Latest versions of…*
-
-* iOS
-* Android
-
-#### Mobile browsers
-*Latest versions of…*
-
-* Mobile Safari
-* Chrome for Mobile
-
-#### Desktop Platforms
-* Windows
-* MacOS
-* Linux
-
-#### Desktop browsers
-*Two latest versions of…*
-
-* Chrome
-* Firefox
-* Safari
-
-*And it should also work in…*
-
-* Microsoft Edge
-* Internet Explorer 10 and up
-
-This doesn't mean that it has to look exactly the same across different browsers. But rather that the overall functionality should work and that the content should be accessible.
-
-### Resources
-
-#### Suggestions
-
-* When doing testing (and primarily design testing) we should do it both on retina and non retina screens. For example some fonts might have an excellent readability on smaller sizes on retina screens but are almost unreadable without retina.
-
-**[🚡 back to top](#table-of-contents)**
-
-## Tools
-
-### Task Runners
-
-We regularly use Gulp, but are open to trying other alternatives.
-
-### Dependency Managers
-
-We have historically used Bower for most of our frontend dependencies, but we're slowly retiring it. Whenever possible, Yarn should be used instead.
-
-On WordPress projects, we also use Composer.
-
-### Linters
-
-#### JavaScript
-
-We recommend using [ES lint](http://eslint.org) with [this config](https://github.com/kollegorna/frontend-manual/tree/master/examples/eslint-config.json).
-
-#### SASS/CSS
-
-We recommend using [stylelint](https://stylelint.io) with [this config](https://github.com/kollegorna/frontend-manual/tree/master/examples/stylelint-config.json).
+See [Support and Compatibility](Support and Compatibility.md)
 
 **[🚡 back to top](#table-of-contents)**
