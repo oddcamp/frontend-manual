@@ -1,9 +1,9 @@
 # Kollegorna's Front End Manual
 ###### v0.4
 
-This document outlines the basic stuff for Front End development at Kollegorna. We should try to keep this as tiny as possible and include only the most important stuff.
+This document outlines the basic stuff for Front End development at [Kollegorna](https://www.kollegorna.se/en). We should try to keep this as tiny as possible and include only the most important stuff.
 
-These things are the default for all our projects unless anything else is specifically said. The entire Front End team should know these things. If you feel that you need some time of powering up your skills just holla at Per and you'll get it.
+These things are the default for all our projects unless anything else is specifically said. The entire Front End team should know these things. If you feel that you need some time of powering up your skills just holla at [Per](https://github.com/persand) and you'll get it.
 
 ## Table of Contents
 
