@@ -210,7 +210,7 @@ We strongly recommend using our [SASS-Boilerplate](https://github.com/kollegorna
     * ❌ `.settings-nav ul li a` should be avoided
 
 * For secure scoping reasons modifier classes should be formated in BEM manner or concatenated with double-dashed classname:
-    * 👌 `.settings-nav__hidden` is good
+    * 👌 `.settings-nav--hidden` is good
     * ✅ `.settings-nav.--hidden` is ok
     * ❌ `.settings-nav.hidden` should be avoided
 
