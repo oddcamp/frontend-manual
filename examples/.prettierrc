@@ -4,5 +4,17 @@
   "semi": false,
   "singleQuote": false,
   "tabWidth": 2,
-  "trailingComma": "es5"
+  "trailingComma": "es5",
+  "overrides": [
+    {
+      "files": ["*.rb"],
+      "options": {
+        "preferSingleQuotes": true,
+        "addTrailingCommas": false,
+        "inlineConditionals": true,
+        "inlineLoops": true,
+        "preferHashLabels": true
+      }
+    }
+  ]
 }
