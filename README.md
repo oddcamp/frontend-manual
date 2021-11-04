@@ -1,7 +1,7 @@
-# Kollegorna's Front End Manual
-_v0.5_
+# Odd Camp's Front End Manual
+_v0.6_
 
-This document outlines the basic stuff for Front End development at [Kollegorna](https://www.kollegorna.se/en). We should try to keep this as tiny as possible and include only the most important stuff.
+This document outlines the basic stuff for Front End development at [Odd Camp](https://www.odd.camp). We should try to keep this as tiny as possible and include only the most important stuff.
 
 These things are the default for all our projects unless anything else is specifically said. The entire Front End team should know these things. If you feel that you need some time of powering up your skills just holla at [Per](https://github.com/persand) and you'll get it.
 
@@ -35,8 +35,8 @@ We usually use linters and [.editorconfig](http://editorconfig.org/#download) in
 
 When starting the Rails or GatsbyJS, we usually use these pre-configured starters/boilerplates:
 
-* [gatsby-starter-kollegorna](https://github.com/kollegorna/gatsby-starter-kollegorna)
-* [rails-boilerplate](https://github.com/kollegorna/rails-boilerplate)
+* [gatsby-starter-oddcamp](https://github.com/oddcamp/gatsby-starter-oddcamp)
+* [rails-boilerplate](https://github.com/oddcamp/rails-boilerplate)
 
 If for some reason you need to start the project from scratch, please make sure to adapt as much of the following as possible:
 
@@ -55,9 +55,9 @@ All projects must have an [.editorconfig file](examples/.editorconfig) by defaul
 
 Set up [ESLint](http://eslint.org), [stylelint](https://stylelint.io) and [Prettier](https://prettier.io) using the following configurations:
 
-* [ESLint config](https://github.com/kollegorna/frontend-manual/tree/master/examples/.eslintrc)
-* [stylelint config](https://github.com/kollegorna/frontend-manual/tree/master/examples/stylelint-config.json)
-* [Prettier config](https://github.com/kollegorna/frontend-manual/tree/master/examples/.prettierrc)
+* [ESLint config](https://github.com/oddcamp/frontend-manual/tree/master/examples/.eslintrc)
+* [stylelint config](https://github.com/oddcamp/frontend-manual/tree/master/examples/stylelint-config.json)
+* [Prettier config](https://github.com/oddcamp/frontend-manual/tree/master/examples/.prettierrc)
 
 [🚡 back to top](#table-of-contents)
 
@@ -225,7 +225,7 @@ Use the [correct quotation marks and apostrophes](http://smartquotesforsmartpeop
 
 ### Minimum viable `<head>` tag composition
 
-We recommend using [these tags](https://github.com/kollegorna/frontend-manual/tree/master/examples/head-tags-recomended.html) (as well as [manifest.json](https://github.com/kollegorna/frontend-manual/tree/master/examples/manifest.json)) in HEAD area are of the document as a starting point.
+We recommend using [these tags](https://github.com/oddcamp/frontend-manual/tree/master/examples/head-tags-recomended.html) (as well as [manifest.json](https://github.com/oddcamp/frontend-manual/tree/master/examples/manifest.json)) in HEAD area are of the document as a starting point.
 
 ### Templating languages
 
@@ -273,7 +273,7 @@ When writting HTML code in an evironment of a framework with templating engine (
 
 ### File Structure and Boilerplate
 
-We usually use [SASS-Boilerplate](https://github.com/kollegorna/sass-boilerplate) in a pair with [SASS-Utils](https://github.com/kollegorna/sass-utils) for SASS projects (please follow the guidelines provided on the repository pages).
+We usually use [SASS-Boilerplate](https://github.com/oddcamp/sass-boilerplate) in a pair with [SASS-Utils](https://github.com/oddcamp/sass-utils) for SASS projects (please follow the guidelines provided on the repository pages).
 
 - Aim for **componentisation**, i.e. creating multiple independent/encapsulated small structures rather than few large.
 
@@ -464,7 +464,7 @@ html {
 
 This enables the users (most likely visually impaired) to scale the site visually. For example: let's say the root element's font size on our site is as recommend — `100%`. By default the website font size in the browser's settings is set to 16px, which means `1rem = 16px`. But if the user has that option set to `32px` the REM value is going to be affected accordingly: `1rem = 32px`. Accessible!
 
-REMs should be used by default, EMs when we need local dependencies and PXs only for the rare cases when things aren't supposed to scale at all (e.g. 1px thick borders). EMs and REMs should be calculated through a [helper from SASS-Utils](https://github.com/kollegorna/sass-utils#units) or [Polished](https://polished.js.org/docs/#rem):
+REMs should be used by default, EMs when we need local dependencies and PXs only for the rare cases when things aren't supposed to scale at all (e.g. 1px thick borders). EMs and REMs should be calculated through a [helper from SASS-Utils](https://github.com/oddcamp/sass-utils#units) or [Polished](https://polished.js.org/docs/#rem):
 
 ```scss
 .component {
@@ -488,11 +488,11 @@ html {
 
 ### Variables
 
-_Variablize_ as much as of global configuration as possible. Our [SASS-Boilerplate](https://github.com/kollegorna/sass-boilerplate/tree/master/src/base) will get you on the way.
+_Variablize_ as much as of global configuration as possible. Our [SASS-Boilerplate](https://github.com/oddcamp/sass-boilerplate/tree/master/src/base) will get you on the way.
 
 Don't forget to set global `z-index`'es as variables – this will save you some time dealing with scroll fixed headers, modals and such.
 
-**Important:** Media Queries have to be EMs based ([where's why](https://zellwk.com/blog/media-query-units)). This is already solved by a helper from [SASS-Utils](https://github.com/kollegorna/sass-utils#mq-mixin).
+**Important:** Media Queries have to be EMs based ([where's why](https://zellwk.com/blog/media-query-units)). This is already solved by a helper from [SASS-Utils](https://github.com/oddcamp/sass-utils#mq-mixin).
 
 ### "Styled" Strategy
 
@@ -526,7 +526,7 @@ When starting a new project we prefer every HTML element to be by default unstyl
   ```
 - Never `@extend .styled` as it will unnecessarily increase the size of the CSS bundle;
 
-For further details, usage and tips follow the ["Styled" guide on SASS-boilerplate](https://github.com/kollegorna/sass-boilerplate#styled-strategy) repository page.
+For further details, usage and tips follow the ["Styled" guide on SASS-boilerplate](https://github.com/oddcamp/sass-boilerplate#styled-strategy) repository page.
 
 ### Responsive Breakpoints
 
@@ -559,7 +559,7 @@ Benefits are:
 * No need to overwrite styles in a media query when changing or adding the default ones.
 * Smaller size of the final CSS file.
 
-We use [Media Queries helper](https://github.com/kollegorna/sass-utils#media-queries) from our SASS-Utils library.
+We use [Media Queries helper](https://github.com/oddcamp/sass-utils#media-queries) from our SASS-Utils library.
 
 ### Usability and Accessibility
 
@@ -569,7 +569,7 @@ Visually indicating that an element is available to be interacted with (e.g. a b
 
 #### Outline
 
-Outline is a crucial element when it comes to website accessibility. Even though sometimes it's visually disturbing and unnecessary, we should never remove outline for keyboard users. There's a Smart Outline library at [JS Utils](https://github.com/kollegorna/js-utils) that helps to deal with the issue:
+Outline is a crucial element when it comes to website accessibility. Even though sometimes it's visually disturbing and unnecessary, we should never remove outline for keyboard users. There's a Smart Outline library at [JS Utils](https://github.com/oddcamp/js-utils) that helps to deal with the issue:
 
 ```js
 initSmartOutline()
@@ -595,13 +595,13 @@ confirmModal.on('show', (confirmBtn, cancelBtn) => {
 
 ### Fonts
 
-* When using webfonts, always be sure to set [web-safe fallback font](https://www.cssfontstack.com) names. Make the sure the fallback fonts are as close to the original one as possible. Our [SASS-Boilerplate](https://github.com/kollegorna/sass-boilerplate) comes with pre-defined web-safe fonts.
+* When using webfonts, always be sure to set [web-safe fallback font](https://www.cssfontstack.com) names. Make the sure the fallback fonts are as close to the original one as possible. Our [SASS-Boilerplate](https://github.com/oddcamp/sass-boilerplate) comes with pre-defined web-safe fonts.
 
     ```scss
     $ff-primary: "proxima-nova", "Arial", "Helvetica Neue", "Helvetica", sans-serif;
     ```
 
-* Often times when using multiple typefaces on a project they have different font weights. Usually the default font weight for the document is `400`. However, it happens a lot that the secondary font doesn't have `400` available as font weight by design. It means that each time you set the secondary font for a component, you also have to specify the font weight in order preserve the visual consistency. Our [SASS-Boilerplate](https://github.com/kollegorna/sass-boilerplate) comes with predefined mixins that automates the process, e.g.:
+* Often times when using multiple typefaces on a project they have different font weights. Usually the default font weight for the document is `400`. However, it happens a lot that the secondary font doesn't have `400` available as font weight by design. It means that each time you set the secondary font for a component, you also have to specify the font weight in order preserve the visual consistency. Our [SASS-Boilerplate](https://github.com/oddcamp/sass-boilerplate) comes with predefined mixins that automates the process, e.g.:
 
     ```scss
     .btn {
@@ -622,7 +622,7 @@ Vendor prefixed properties should automatically be inserted by an asset bundlers
 
 ### Design Systems
 
-It's common for us to work on several different projects for the same client. When this happens, we've found it useful to develop a collection of global, reusable styles — which we call a Design System. When declared as a dependency on a project, a design system gives us a nice collection of sensible defaults we can use to get started faster. Should the need arise, it also lets us update one default style across all projects related to a specific client. If you believe a design system would be beneficial in the long run, there is [a boilerplate with some sensible defaults in place](https://github.com/kollegorna/design-system-boilerplate). The repo includes instructions on how to set it up, as well as recommendations on how to seamlessly include it in your project without disrupting your workflow.
+It's common for us to work on several different projects for the same client. When this happens, we've found it useful to develop a collection of global, reusable styles — which we call a Design System. When declared as a dependency on a project, a design system gives us a nice collection of sensible defaults we can use to get started faster. Should the need arise, it also lets us update one default style across all projects related to a specific client. If you believe a design system would be beneficial in the long run, there is [a boilerplate with some sensible defaults in place](https://github.com/oddcamp/design-system-boilerplate). The repo includes instructions on how to set it up, as well as recommendations on how to seamlessly include it in your project without disrupting your workflow.
 
 ### Also...
 - **Always make sure that any images, videos, iframes have dimensional properties defined in CSS.** Never depend on the size of the original source as this is prone to change and break the layout.
@@ -677,8 +677,8 @@ It's common for us to work on several different projects for the same client. Wh
 
 ### Resources
 
-* https://github.com/kollegorna/sass-boilerplate
-* https://github.com/kollegorna/sass-utils
+* https://github.com/oddcamp/sass-boilerplate
+* https://github.com/oddcamp/sass-utils
 * https://github.com/airbnb/css#oocss-and-bem
 * http://getbem.com/introduction
 * http://www.intelligiblebabble.com/a-pattern-for-writing-css-to-scale
@@ -700,11 +700,11 @@ We prefer using ES6 together with [Babel](https://babeljs.io), to ensure the cod
 
 ### JS Utils
 
-We maintain and use [JS Utils](https://github.com/kollegorna/js-utils) library on real-life projects for easier development. The code examples below also rely on the library.
+We maintain and use [JS Utils](https://github.com/oddcamp/js-utils) library on real-life projects for easier development. The code examples below also rely on the library.
 
 ### jQuery
 
-We discourage using jQuery for new projects if possible. Instead, strive to rely on dependency-free lightweight libraries, such as JS Utils and [similar ones](https://github.com/kollegorna/js-utils#other-resources) or consider [conditional loading](#loading-large-libraries-conditionally) for jQuery and its plugins.
+We discourage using jQuery for new projects if possible. Instead, strive to rely on dependency-free lightweight libraries, such as JS Utils and [similar ones](https://github.com/oddcamp/js-utils#other-resources) or consider [conditional loading](#loading-large-libraries-conditionally) for jQuery and its plugins.
 
 ### Selecting DOM elements
 
@@ -897,7 +897,7 @@ Our suggestion is not to rely on JavaScript for animations or transitions, if th
 
 ### Resources
 
-* https://github.com/kollegorna/js-utils
+* https://github.com/oddcamp/js-utils
 * https://developers.google.com/web/fundamentals/accessibility/semantics-aria
 * https://es6.io
 * https://css-tricks.com/debouncing-throttling-explained-examples
