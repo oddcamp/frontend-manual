@@ -1,9 +1,9 @@
 # Odd Camp's Front End Manual
-_v0.6_
+_v0.7_
 
 This document outlines the basic stuff for Front End development at [Odd Camp](https://www.odd.camp). We should try to keep this as tiny as possible and include only the most important stuff.
 
-These things are the default for all our projects unless anything else is specifically said. The entire Front End team should know these things. If you feel that you need some time of powering up your skills just holla at [Per](https://github.com/persand) and you'll get it.
+These things are the default for all our projects unless anything else is specifically said. The entire Front End team should know these things. If you have questions or suggestions regarding this manual, hit up [Osvaldas](https://github.com/osvaldasvalutis). If you feel that you need some time of powering up your skills just holla at [Per](https://github.com/persand) and you'll get it.
 
 ## Table of Contents
 
@@ -20,7 +20,7 @@ These things are the default for all our projects unless anything else is specif
 
 ## Code editor
 
-We usually use linters and [.editorconfig](http://editorconfig.org/#download) in our projects. In order to smoothen the development process install Eslint and Stylelint extensions in your code editor. For _Visual Studio Code_ use these:
+We usually use linters and [.editorconfig](http://editorconfig.org/#download) in our projects. In order to smoothen the development process install ESlint and Stylelint extensions in your code editor. For _Visual Studio Code_ use these:
 
 * [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 * [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
@@ -33,12 +33,12 @@ We usually use linters and [.editorconfig](http://editorconfig.org/#download) in
 
 ### Starters and boilerplates
 
-When starting the Rails or GatsbyJS, we usually use these pre-configured starters/boilerplates:
+When starting a Rails or GatsbyJS project, we usually use these pre-configured starters/boilerplates:
 
 * [gatsby-starter-oddcamp](https://github.com/oddcamp/gatsby-starter-oddcamp)
 * [rails-boilerplate](https://github.com/oddcamp/rails-boilerplate)
 
-If for some reason you need to start the project from scratch, please make sure to adapt as much of the following as possible:
+If for some reason you need to start a project from scratch, please make sure to adapt as much of the following as possible:
 
 ### Dependencies
 
@@ -182,7 +182,7 @@ We should make an effort to produce valid [semantic HTML](https://codepen.io/mi-
     </article>
     ```
 
-* Provide text for links, buttons and images otherwise screen readers will read full URLs for the users. Also use `[title]` attributes as hints for mouse users:
+* Provide text for links, buttons and images, otherwise screen readers will read full URLs for the users. Also use `[title]` attributes as hints for mouse users:
 
     ✅ DO:
     ```html
@@ -202,7 +202,7 @@ We should make an effort to produce valid [semantic HTML](https://codepen.io/mi-
     <img src="..." />
     ```
 
-* Forms should have fragment identifiers set properly which is crucial if the from appears _below the fold_, e.g.:
+* Forms should have fragment identifiers set properly, which is crucial if the form appears _below the fold_, e.g.:
     ✅ DO:
     ```html
     <form method="post" action="/contact#add-contact-form" id="add-contact-form">...</form>
@@ -210,10 +210,10 @@ We should make an effort to produce valid [semantic HTML](https://codepen.io/mi-
 
 * Also make sure:
   - it embraces [ARIA](https://developers.google.com/web/fundamentals/accessibility/semantics-aria) attributes
-  - UI's are usable with keyboard
-  - visually hidden elements are excluded from tab order
-  - the rest of the page is excluded from tab order when modal is opened
-  - dropdown menus and tabs work as least with Tab button (enabling arrow buttons would be a nice touch)
+  - UI's are usable with a keyboard
+  - visually hidden elements are excluded from the tab order
+  - the rest of the page is excluded from tab order when a modal is opened
+  - dropdown menus and tabs work at least with the Tab key (enabling arrow buttons would be a nice touch)
   - click and touch targets are at least `44x44px` in size
 
 ### Smart Quotes
@@ -225,11 +225,11 @@ Use the [correct quotation marks and apostrophes](http://smartquotesforsmartpeop
 
 ### Minimum viable `<head>` tag composition
 
-We recommend using [these tags](https://github.com/oddcamp/frontend-manual/tree/master/examples/head-tags-recomended.html) (as well as [manifest.json](https://github.com/oddcamp/frontend-manual/tree/master/examples/manifest.json)) in HEAD area are of the document as a starting point.
+We recommend using [these tags](https://github.com/oddcamp/frontend-manual/tree/master/examples/head-tags-recomended.html) (as well as [manifest.json](https://github.com/oddcamp/frontend-manual/tree/master/examples/manifest.json)) in the HEAD area are of the document as a starting point.
 
 ### Templating languages
 
-When writting HTML code in an evironment of a framework with templating engine (be it ERB or JSX) it's very easy to mess up the code readability. In order to avoid that it's best to put as much logic in to controllers as possible. If you still have to write framework realted code in a template, it's better to do as much of it in the top of the file as possible, e.g.:
+When writing HTML code in an environment that includes a templating engine (be it ERB or JSX), it's very easy to mess up code readability. In order to avoid that, it's best to put as much logic into the controllers as possible. If you still have to write framework related code in a template, it's better to do as much of it at the top of the file as possible, e.g.:
 
 ✅ DO:
 ```erb
@@ -273,13 +273,13 @@ When writting HTML code in an evironment of a framework with templating engine (
 
 ### File Structure and Boilerplate
 
-We usually use [SASS-Boilerplate](https://github.com/oddcamp/sass-boilerplate) in a pair with [SASS-Utils](https://github.com/oddcamp/sass-utils) for SASS projects (please follow the guidelines provided on the repository pages).
+We usually use [SASS-Boilerplate](https://github.com/oddcamp/sass-boilerplate) together with [SASS-Utils](https://github.com/oddcamp/sass-utils) for SASS projects (please follow the guidelines provided in the repository pages).
 
-- Aim for **componentisation**, i.e. creating multiple independent/encapsulated small structures rather than few large.
+- Aim for **componentization**, i.e. creating multiple independent/encapsulated small structures rather than a few large ones.
 
-- In SASS projects we usually split components into two categories/folders:
+- In SASS projects, we usually split components into two categories/folders:
   - `components` – global components
-  - `pages` – page specific components
+  - `pages` – page-specific components
 
 - Be very strict at placing components in their own files, e.g.:
 
@@ -317,11 +317,11 @@ We usually use [SASS-Boilerplate](https://github.com/oddcamp/sass-boilerplate) i
     * ✅ `.settings-nav__links__list` is ok
     * ❌ `.settings-nav__links__list__item` should be avoided
 
-* In case of a need to chain more than three selector levels consider nesting. Nested single class names should start with a dash which indicates that this selector is scoped/local (strictly belongs to the parent selector) and altogether it won't conflict with a probable global component that has the same name:
+* In case you need to chain more than three selector levels, consider nesting. Nested single class names should start with a dash, which indicates that this selector is scoped/local (strictly belongs to the parent selector) and altogether it won't conflict with global components that might habe the same name:
     * 👌 `.settings-nav .-links` is good
     * ❌ `.settings-nav .links` should be avoided
 
-    **Important!** Do not confuse the last example with the cases of extending a global component:
+    **Important!** Do not confuse the last example with cases where you are extending a global component:
 
     * 👌 `.settings-nav .links` is good if `.links` was a global component and was meant to be extended under the `.settings-nav` component
 
@@ -334,20 +334,20 @@ We usually use [SASS-Boilerplate](https://github.com/oddcamp/sass-boilerplate) i
     * 👌 `.settings-nav ul a` is good
     * ❌ `.settings-nav ul li a` should be avoided
 
-* For secure scoping reasons modifier classes should be formated in BEM manner or concatenated with double-dashed classname:
+* For secure scoping reasons, modifier classes should be formated according to BEM, or concatenated with double-dashed class names:
     * 👌 `.settings-nav--hidden` is good
     * ✅ `.settings-nav.--hidden` is ok
     * ❌ `.settings-nav.hidden` should be avoided
 
 ### Using ID's
 
-Even though ID attribute was primarily designed as an accessibility feature for fragmenting document, but the requirement for uniqueness, specificity, componentization are the actual reasons why ID's in CSS should be avoided.
+Although the ID attribute was primarily designed as an accessibility feature for fragmenting document, the requirements for uniqueness, specificity, and componentization are incompatible with its use in CSS. We should avoid using ID's, except in cases where they are strictly required (e.g. to uniquely identify a specific instance of a component, to set page anchors, among others).
 
 ### Componentization
 
-Treating the whole page as a single component can easily get you in a selector chain hell, it becomes difficult to use parent modifier classes that affect child elements, your code becomes spaghetti. Therefore it's recomended to go with React-like approach and treat the page as a combination of multiple and small components, which by the nature are easily reusable, extendable, the code becomes more visually perceivable.
+Treating the whole page as a single component can easily get you in selector-chain hell. It becomes difficult to use parent modifier classes that affect child elements, and your code quickly turns into spaghetti. Therefore, it's recommended to always treat the page as a combination of multiple and small components, which by their nature are easily reusable and extendable, making the code more intelligible.
 
-❌ Avoid complex SASS constructions like this:
+❌ Avoid complex SASS structures like this:
 
 ```scss
 .settings {
@@ -391,7 +391,7 @@ Treating the whole page as a single component can easily get you in a selector c
 }
 ```
 
-If you have a component which is reused multiple of times on the same page, it's recommended to avoid making assumptions on its context (i.e. use positioning related properties such as `margin`, `position/top/left/...`), but put that responsibility on a parental component:
+If you have a component that is reused multiple times on the same page, avoid making assumptions about its context (i.e. use positioning-related properties such as `margin`, `position/top/left/...`). Instead, put that responsibility on a parent component:
 
 ```scss
 .settings-avatar {
@@ -421,7 +421,7 @@ If you have a component which is reused multiple of times on the same page, it's
 
 ### Extensions and overrides
 
-It's usually a better practise to create an extensions for a nested component rather than overriding it. With that things are more predicatable and controllable:
+It's usually a better practice to create extensions for a nested component, rather than overriding it. That way, things are more predictable and controllable:
 
 ✅ DO:
 ```scss
@@ -441,7 +441,7 @@ It's usually a better practise to create an extensions for a nested component ra
 }
 ```
 
-However, if you need to adjust how the nested component behaves in context _overriding_ makes sense:
+However, if you need to adjust how the nested component behaves in a specific context, _overriding_ makes sense:
 
 ✅ DO:
 ```scss
@@ -454,7 +454,7 @@ However, if you need to adjust how the nested component behaves in context _over
 
 ### Units
 
-For a better accessibility we should use EMs/REMs and set the font size of the root element (`html`) to a percentage value, preferably `100%`:
+For better accessibility we should use EMs/REMs and set the font size of the root element (`html`) to a percentage value, preferably `100%`:
 
 ```scss
 html {
@@ -462,9 +462,9 @@ html {
 }
 ```
 
-This enables the users (most likely visually impaired) to scale the site visually. For example: let's say the root element's font size on our site is as recommend — `100%`. By default the website font size in the browser's settings is set to 16px, which means `1rem = 16px`. But if the user has that option set to `32px` the REM value is going to be affected accordingly: `1rem = 32px`. Accessible!
+This enables the users (most likely visually impaired) to scale the site visually. For example: let's say the root element's font size on our site is as recommended — `100%`. By default the website font size in the browser's settings is set to 16px, which means `1rem = 16px`. But if the user has that option set to `32px` the REM value is going to be affected accordingly: `1rem = 32px`. Accessible!
 
-REMs should be used by default, EMs when we need local dependencies and PXs only for the rare cases when things aren't supposed to scale at all (e.g. 1px thick borders). EMs and REMs should be calculated through a [helper from SASS-Utils](https://github.com/oddcamp/sass-utils#units) or [Polished](https://polished.js.org/docs/#rem):
+REMs should be used by default, EMs when we need local dependencies, and PXs only for the rare cases when things aren't supposed to scale at all (e.g. 1px thick borders). EMs and REMs should be calculated through a [helper from SASS-Utils](https://github.com/oddcamp/sass-utils#units) or [Polished](https://polished.js.org/docs/#rem):
 
 ```scss
 .component {
@@ -488,21 +488,20 @@ html {
 
 ### Variables
 
-_Variablize_ as much as of global configuration as possible. Our [SASS-Boilerplate](https://github.com/oddcamp/sass-boilerplate/tree/master/src/base) will get you on the way.
+_Variablize_ as many of the global configurations as possible. Our [SASS-Boilerplate](https://github.com/oddcamp/sass-boilerplate/tree/master/src/base) will get you on the way.
 
-Don't forget to set global `z-index`'es as variables – this will save you some time dealing with scroll fixed headers, modals and such.
+Don't forget to set global `z-index`'es as variables – this will save you some time dealing with scroll fixed headers, modals, and such.
 
-**Important:** Media Queries have to be EMs based ([where's why](https://zellwk.com/blog/media-query-units)). This is already solved by a helper from [SASS-Utils](https://github.com/oddcamp/sass-utils#mq-mixin).
+**Important:** Media Queries have to be EMs based ([here's why](https://zellwk.com/blog/media-query-units)). This is already solved by a helper from [SASS-Utils](https://github.com/oddcamp/sass-utils#mq-mixin).
 
 ### "Styled" Strategy
 
-"Styled" is a strategy for styling HTML elements that are usually inserted via WYSIWYG editors when writing articles, blog posts: `h1-6, p, blockquote, a, ul, ol, dl, table, code, pre`, etc.
-When starting a new project we prefer every HTML element to be by default unstyled (naked) and unopinionated about the context it's in. Benefits are:
+_Styled_ is a strategy for styling HTML elements that are usually inserted via WYSIWYG editors when writing articles, blog posts, etc. (`h1-6, p, blockquote, a, ul, ol, dl, table, code, pre`, among other common tags). When starting a new project we prefer every HTML element to be unstyled (naked) by default, and unopinionated about the context it's in. Benefits are:
 
-- No need to overwrite default styles (e.g. remove margins, change hover effects, etc.) when an element is in different context or should be styled differently;
-- No need to track the changes in the default styling of an element and update its every single occurence where the styling was meant to be completely different;
+- No need to overwrite default styles (e.g. remove margins, change hover effects, etc.) when an element is in a different context or should be styled differently;
+- No need to track the changes in the default styling of an element and update every single instance where the styling was meant to be completely different;
 - Visual consistency among browsers;
-- Smaller size of the final CSS file.
+- Smaller CSS file size;
 - **Always be sure** you attach the major `styled` class name to the direct parent element of the content:
 
   ✅ DO:
@@ -524,13 +523,13 @@ When starting a new project we prefer every HTML element to be by default unstyl
     </div>
   </div>
   ```
-- Never `@extend .styled` as it will unnecessarily increase the size of the CSS bundle;
+- Never `@extend .styled` as it will unnecessarily increase the size of the CSS bundle.
 
 For further details, usage and tips follow the ["Styled" guide on SASS-boilerplate](https://github.com/oddcamp/sass-boilerplate#styled-strategy) repository page.
 
 ### Responsive Breakpoints
 
-You should structure breakpoints to avoid overrides: define shared styles first and put the rest to the appropriate media queries.
+You should structure breakpoints to avoid overrides: define shared styles first and put the rest inside appropriate media queries.
 
 ```scss
 .element {
@@ -556,8 +555,8 @@ You should structure breakpoints to avoid overrides: define shared styles first 
 ```
 
 Benefits are:
-* No need to overwrite styles in a media query when changing or adding the default ones.
-* Smaller size of the final CSS file.
+* No need to overwrite styles in a media query when changing or adding the default ones;
+* Smaller CSS file size.
 
 We use [Media Queries helper](https://github.com/oddcamp/sass-utils#media-queries) from our SASS-Utils library.
 
@@ -565,7 +564,7 @@ We use [Media Queries helper](https://github.com/oddcamp/sass-utils#media-querie
 
 #### Indicating Interaction
 
-Visually indicating that an element is available to be interacted with (e.g. a button is clickable) or the interaction has been successful (e.g. the button has been clicked) is a sign of good UX. Therefore we should always look for embracing `:hover`, `:focus` and `:active` pseudo-classes.
+Visually indicating that an element is available to be interacted with (e.g. a button is clickable) or the interaction has been successful (e.g. the button has been clicked) is a sign of good UX. Therefore we should always look to embrace `:hover`, `:focus` and `:active` pseudo-classes.
 
 #### Outline
 
@@ -576,7 +575,7 @@ initSmartOutline()
 ```
 Smart Outline hides the outline when interacting with a mouse and brings it back when interacting with a keyboard.
 
-In some cases it's really meaningful to reveal the outline for mouse users as well. For example, let's say there is a confirm-type modal that pops up with two buttons ("Delete" and "Cancel"). Adding the focus on the primary action button and revealing the outline would tell the user they can also press "Enter" button to delete an item, e.g.:
+In some cases, it's really meaningful to reveal the outline for mouse users as well. For example, let's say there is a confirm-type modal that pops up with two buttons ("Delete" and "Cancel"). Adding the focus on the primary action button and revealing the outline would tell the user they can also press "Enter" button to delete an item, e.g.:
 
 ```js
 confirmModal.on('show', (confirmBtn, cancelBtn) => {
@@ -591,17 +590,17 @@ confirmModal.on('show', (confirmBtn, cancelBtn) => {
 * Accelerate "expensive" CSS solutions with [`will-change`](https://developer.mozilla.org/en-US/docs/Web/CSS/will-change), but do not overuse it;
 * Avoid nesting more than three selectors. Proper componentisation will help you;
 * Don't hide text with `text-indent: -9999px`, there is a [better technique for it](http://www.zeldman.com/2012/03/01/replacing-the-9999px-hack-new-image-replacement/);
-* To make object round, do `border-radius: 50%` instead of `999px`.
+* To make objects round, do `border-radius: 50%` instead of `999px`.
 
 ### Fonts
 
-* When using webfonts, always be sure to set [web-safe fallback font](https://www.cssfontstack.com) names. Make the sure the fallback fonts are as close to the original one as possible. Our [SASS-Boilerplate](https://github.com/oddcamp/sass-boilerplate) comes with pre-defined web-safe fonts.
+* When using webfonts, always be sure to set [web-safe fallback font](https://www.cssfontstack.com) names. Make sure the fallback fonts are as close to the original one as possible. Our [SASS-Boilerplate](https://github.com/oddcamp/sass-boilerplate) comes with pre-defined web-safe fonts.
 
     ```scss
     $ff-primary: "proxima-nova", "Arial", "Helvetica Neue", "Helvetica", sans-serif;
     ```
 
-* Often times when using multiple typefaces on a project they have different font weights. Usually the default font weight for the document is `400`. However, it happens a lot that the secondary font doesn't have `400` available as font weight by design. It means that each time you set the secondary font for a component, you also have to specify the font weight in order preserve the visual consistency. Our [SASS-Boilerplate](https://github.com/oddcamp/sass-boilerplate) comes with predefined mixins that automates the process, e.g.:
+* Oftentimes, when using multiple typefaces on a project, they have different font weights. Usually, the default font-weight for the document is `400`. However, it will sometimes happens that the secondary font doesn't have `400` available as font-weight by design. It means that each time you set the secondary font for a component, you also have to specify the font-weight in order to preserve the visual consistency. Our [SASS-Boilerplate](https://github.com/oddcamp/sass-boilerplate) comes with predefined mixins that automate the process, e.g.:
 
     ```scss
     .btn {
@@ -618,14 +617,14 @@ confirmModal.on('show', (confirmBtn, cancelBtn) => {
 
 ### Vendor Prefixes
 
-Vendor prefixed properties should automatically be inserted by an asset bundlers, therefore it's best to keep your code clean and use only prefix-free properties. This doesn't apply to properties that doesn't have standardized equivalents (such as `-webkit-overflow-scrolling`) or work differently than their standardized equivalents.
+Vendor prefixed properties should automatically be inserted by an asset bundler, therefore it's best to keep your code free of prefixed properties. This doesn't apply to properties that don't have standardized equivalents (such as `-webkit-overflow-scrolling`) or work differently than their standardized equivalents.
 
 ### Design Systems
 
 It's common for us to work on several different projects for the same client. When this happens, we've found it useful to develop a collection of global, reusable styles — which we call a Design System. When declared as a dependency on a project, a design system gives us a nice collection of sensible defaults we can use to get started faster. Should the need arise, it also lets us update one default style across all projects related to a specific client. If you believe a design system would be beneficial in the long run, there is [a boilerplate with some sensible defaults in place](https://github.com/oddcamp/design-system-boilerplate). The repo includes instructions on how to set it up, as well as recommendations on how to seamlessly include it in your project without disrupting your workflow.
 
 ### Also...
-- **Always make sure that any images, videos, iframes have dimensional properties defined in CSS.** Never depend on the size of the original source as this is prone to change and break the layout.
+- **Always make sure that any images, videos, and iframes have dimensional properties defined in CSS.** Never depend on the size of the original source as this is prone to change and break the layout.
 
   ✅ DO:
   ```scss
@@ -651,7 +650,7 @@ It's common for us to work on several different projects for the same client. Wh
     max-width: em(240);
   }
   ```
-- Never use CSS's property `content` for text – it's not accessible solution:
+- Never use CSS's property `content` for text – it's not an accessible solution:
 
   ❌ DON'T:
   ```scss
@@ -708,9 +707,7 @@ We discourage using jQuery for new projects if possible. Instead, strive to rely
 
 ### Selecting DOM elements
 
-Even though ID attribute was primarily designed as an accessibility feature for fragmenting document, but the requirement for uniqueness, specificity, componentization are the actual reasons why ID's for selecting DOM elements in JS should be avoided by any means.
-
-* Always be specific at what you select in order to avoid unexpected outcome:
+* Always be specific about what you are selecting, in order to avoid unexpected outcomes:
 
   ✅ DO:
   ```js
@@ -724,11 +721,11 @@ Even though ID attribute was primarily designed as an accessibility feature for 
   const toggle = document.querySelectorAll(`input[type="radio"]`)
   ```
 
-  In this case we specifically select inputs of the `settingsSidebar`, not the whole document.
+  In this case, we specifically select inputs of the `settingsSidebar`, not the whole document.
 
 ### Progressive Enhancement, Graceful Degradation
 
-Treating JavaScript as an ehancement allows to code **fail-safe**, semantic and accessible websites. Take a look at the "Recent news" list example:
+Treating JavaScript as an ehancement promotes the development of **fail-safe**, semantic, accessible websites. Take a look at this "Recent news" list example:
 
   ```html
   <h3>Recent news</h3>
@@ -755,13 +752,13 @@ Treating JavaScript as an ehancement allows to code **fail-safe**, semantic and 
   })
   ```
 
-Instead of assuming JavaScript is there and using `button`, we use `a[href]` which would redirect users to the corresponding page in case if JavaScript is disabled, it failed or hasn't been loaded yet. In parallel we also progressively enhance the experience with some JavasScript which turns the anchor into a semantic button `a[role=button]`. On the first click it reveals the hidden items and on the second it works as a typical anchor that redirects users to the corresponding page.
+Instead of assuming JavaScript is there and using `button`, we use `a[href]` which would redirect users to the corresponding page in cases where JavaScript is disabled, it failed, or it hasn't been loaded yet. In parallel, we also progressively enhance the experience with some JavasScript which turns the anchor into a semantic button `a[role=button]`. After the first click, it reveals the hidden items, and after the second it works like a typical anchor that redirects users to the corresponding page.
 
 ### Performance and Optimization
 
 #### Embedding JavaScript
 
-Avoid placing JS file insertions in <head> that work in a synchronous manner and therefore blocks rendering of the page. The more such an occasions, the later users start seeing the page. JavaScript file embeds should be placed right before </body> tag preferably with [`defer` or `async`](http://www.growingwiththeweb.com/2014/02/async-vs-defer-attributes.html) attributes inserted along.
+Avoid placing JS file insertions in <head> that work in a synchronous manner and therefore block rendering of the page. The more this happens, the later users will start seeing the page. JavaScript file embeds should be placed right before </body> tag, preferably with [`defer` or `async`](http://www.growingwiththeweb.com/2014/02/async-vs-defer-attributes.html) attributes inserted along.
 
 ```html
 <!DOCTYPE html>
@@ -776,7 +773,7 @@ Avoid placing JS file insertions in <head> that work in a synchronous manner and
 </html>
 ```
 
-In cases (e.g. Modernizr) when there's a need to run some JavaScript code in `<head></head>` before page renders, it's best to minify and inline it:
+In cases when there's a need to run some JavaScript code in `<head></head>` before page renders (e.g. Modernizr), it's best to minify and inline it:
 
 ```html
 <head>
@@ -803,7 +800,7 @@ Avoid inlining JavaScript everywhere else.
 
 #### Throttling and Debouncing
 
-Attaching "heavy" functions to scroll, resize events can be cause of [unresponsive pages, even browser crashes](https://css-tricks.com/debouncing-throttling-explained-examples), excessive Ajax requests, etc. By default, always use handler [throttling] and [deboucing] for `scroll`, `resize` events:
+Attaching "heavy" functions to scroll, resize events can be the cause of [unresponsive pages, even browser crashes](https://css-tricks.com/debouncing-throttling-explained-examples), excessive Ajax requests, etc. By default, always use handler [throttling] and [deboucing] for `scroll`, `resize` events:
 
 ```js
 addEventListener(window, 'resize', debounce(500, () => {
@@ -859,7 +856,7 @@ if(list) {
 
 #### Performant and Tidy jQuery Code
 
-In case you still have to use jQuery use it wisely. jQuery selectors should be cached into variables both for optimization reason and better code readability. Variable names that hold a jQuery object value should be prefixed with `$` sign.
+In case you still have to use jQuery use it wisely. jQuery selectors should be cached into variables both for optimization reasons and better code readability. Variable names that hold a jQuery object value should be prefixed with `$` sign.
 
 ✅ DO:
 
@@ -893,7 +890,7 @@ Also be sure to check [jQuery performance guide](https://learn.jquery.com/perfor
 
 ### Animations
 
-Our suggestion is not to rely on JavaScript for animations or transitions, if the same effects can be accomplished purely with CSS (using JavaScript for class toggling only).
+Our suggestion is not to rely on JavaScript for animations or transitions if the same effects can be accomplished purely with CSS (using JavaScript for class toggling only).
 
 ### Resources
 
@@ -908,7 +905,7 @@ Our suggestion is not to rely on JavaScript for animations or transitions, if th
 
 ### Vector Images (SVG)
 
-We have a three-pronged approach at using vector images:
+We have a three-pronged approach to using vector images:
 
 * `<use>` usually for monocolor icons
 * `<svg>` (inline) for images whose look should be altered by CSS/JS of a page
@@ -916,7 +913,7 @@ We have a three-pronged approach at using vector images:
 
 #### `<use>`
 
-Whenever you want your SVG's paths' colours to be customisable through CSS, this is the way to go. The technique is mostly enough for embedding decorational UI graphics like icons. It's performant and accessible, but still gives us some room for customisation. Please keep in mind, however, that this only allows you to choose a fill colour for all paths in a given group (styling different paths with different colours, or setting fills and strokes, for example, won't work).
+Whenever you want your SVG's paths' colors to be customizable through CSS, this is the way to go. The technique is mostly enough for embedding decorational UI graphics like icons. It's performant and accessible, but still gives us some room for customization. Please keep in mind, however, that this only allows you to choose a fill color for all paths in a given group (styling different paths with different colors, or setting fills and strokes, for example, won't work).
 
 When using this approach, SVG code can go inside one or several .svg files wrapped in a `<symbol>` tag:
 
@@ -943,7 +940,7 @@ You should then embed the graphics into HTML as follows:
 <svg><use xlink:href="/icons.svg#menu"></use></svg>
 ```
 
-Make sure your `<svg>` instances are [accessible](https://css-tricks.com/accessible-svgs/#article-header-id-8): dependently on the context either tell the screen readers to ignore the element (`[aria-hidden=true]`) or add a title (`<title> or [aria-label=”...”]`).
+Make sure your `<svg>` instances are [accessible](https://css-tricks.com/accessible-svgs/#article-header-id-8): depending on the context, either tell the screen readers to ignore the element (`[aria-hidden=true]`) or add a title (`<title> or [aria-label=”...”]`).
 
 #### `<svg>` (inline)
 
@@ -961,17 +958,17 @@ We usually use CSS for basic animations and rely on JavaScript libraries such as
 
 We prefer using SVG icons via `<use>` and/or inline `<svg>`. Using raster file types (such as PNGs) or fonts for icons is strongly discouraged.
 
-In case of monocolor SVG icons, their color should be alterable from the CSS of the page using `fill` property. For that to work the SVG code of an icon should have `viewBox` attribute set whereas color defining attributes should be removed or replaced with `currentColor` value where needed.
+In the case of monocolor SVG icons, their color should be alterable from the CSS of the page using `fill` property. For that to work the SVG code of an icon should have `viewBox` attribute set whereas color-defining attributes should be removed or replaced with `currentColor` value where needed.
 
 ### Raster images
 
-For raster images, we should use JPGs when the image's contents are mostly photographic in nature (i.e. where colour clustering is unlikely to be noticeable) and PNGs when the image is mostly geometric, has large homogeneous swaths of colour or when transparency is required.
+For raster images, we should use JPGs when the image's contents are mostly photographic in nature (i.e. where color clustering is unlikely to be noticeable) and PNGs when the image is mostly geometric and has large homogeneous swaths of color or when transparency is required.
 
 We should use `<picture>` and/or `[srcset]` as much as possible.
 
 ### Optimisation
 
-Images should always be optimised before the site goes live. This should be done in a non-destructive manner (i.e. you should make sure the original, non-compressed images are still easily available somewhere). For JPGs, most software has decent compression algorithms. For PNGs, you'll find a list of useful optimisation resources below.
+Images should always be optimized before the site goes live. This should be done in a non-destructive manner (i.e. you should make sure the original, non-compressed images are still easily available somewhere). For JPGs, most software has decent compression algorithms. For PNGs, you'll find a list of useful optimization resources below.
 
 ### Resources
 
@@ -986,7 +983,7 @@ Images should always be optimised before the site goes live. This should be done
 
 #### Suggestions
 
-* When using libraries in production, try to only require/import the pieces you need — e.g. if you're using Foundation's grid, only add Foundation's core, its grid component and any dependencies it may have;
+* When using libraries in production, try to only require/import the pieces you need — e.g. if you're using Foundation's grid, only add Foundation's core, its grid component, and any dependencies it may have;
 * When adding a library as a dependency, you should specify a version, to prevent builds from breaking with future updates;
 
 **[🚡 back to top](#table-of-contents)**
