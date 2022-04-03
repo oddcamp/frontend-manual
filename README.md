@@ -1,5 +1,5 @@
 # Odd Camp's Front End Manual
-_v0.6_
+_v0.7_
 
 This document outlines the basic stuff for Front End development at [Odd Camp](https://www.odd.camp). We should try to keep this as tiny as possible and include only the most important stuff.
 
