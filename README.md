@@ -56,7 +56,7 @@ All projects must have an [.editorconfig file](examples/.editorconfig) by defaul
 Set up [ESLint](http://eslint.org), [stylelint](https://stylelint.io) and [Prettier](https://prettier.io) using the following configurations:
 
 * [ESLint config](https://github.com/oddcamp/frontend-manual/tree/master/examples/.eslintrc)
-* [stylelint config](https://github.com/oddcamp/frontend-manual/tree/master/examples/stylelint-config.json)
+* [stylelint config](https://github.com/oddcamp/frontend-manual/blob/master/examples/.stylelintrc)
 * [Prettier config](https://github.com/oddcamp/frontend-manual/tree/master/examples/.prettierrc)
 
 [🚡 back to top](#table-of-contents)
