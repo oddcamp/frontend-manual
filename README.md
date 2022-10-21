@@ -992,9 +992,9 @@ Images should always be optimized before the site goes live. This should be done
 
 We've already touched some a11y cases, but building applications and websites that are usable for as many people (and bots) as possible is in our backbone. It's not some extra topping on the ice cream but rather something that should be considered during the entire process of a project.
 
-### WCAG 2.0 Level AA
+### WCAG 2.1 Level AA
 
-Code should be compliant with WCAG 2.0 Level AA. This is something that needs to be considered in the design process as well as one of the ingredients in the WCAG mix is color contrast.
+Code should be compliant with WCAG 2.1 Level AA. This is something that needs to be considered in the design process as well as one of the ingredients in the WCAG mix is color contrast.
 
 ### Resources
 
@@ -1005,7 +1005,7 @@ Code should be compliant with WCAG 2.0 Level AA. This is something that needs to
 * http://webaim.org/standards/wcag/checklist
 * https://developer.mozilla.org/en-US/docs/Web/Accessibility
 * https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA
-* https://webbriktlinjer.se/r/1-utga-fran-wcag-2-0-niva-aa (Swedish)
+* https://webbriktlinjer.se/lagkrav/folj-standarder-tillganglighet/ (Swedish)
 
 #### Docs & specs
 
